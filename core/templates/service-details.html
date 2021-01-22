@@ -1,0 +1,233 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block content %}
+    <title>Sheltek || Service Details</title>
+        <!-- BREADCRUMBS AREA START -->
+        <div class="breadcrumbs-area bread-bg-1 bg-opacity-black-70">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="breadcrumbs">
+                            <h2 class="breadcrumbs-title">Service</h2>
+                            <ul class="breadcrumbs-list">
+                                <li><a href="{% url 'home' %}">Home</a></li>
+                                <li><a href="{% url 'service' %}">Service</a></li>
+                                <li>Single Service</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- BREADCRUMBS AREA END -->
+
+        <!-- Start page content -->
+        <section id="page-content" class="page-wrapper">
+
+            <!-- ABOUT SHELTEK AREA START -->
+            <div class="about-sheltek-area ptb-115">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-push-6 col-xs-12">
+                            <div class="section-title mb-30">
+                                <h3>KNOW ABOUT </h3>
+                                <h2>OUR SERVICES</h2>
+                            </div>
+                            <div class="about-sheltek-info">
+                                <p><span data-placement="top" data-toggle="tooltip" data-original-title="The name you can trust" class="tooltip-content"></span> {{ services.descriptions | safe }} </p>
+                                <div class="author-quote">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-sm-pull-6 col-xs-12">
+                            <div class="about-image">
+                                <img src="{{ services.img.url }}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ABOUT SHELTEK AREA END -->
+
+            <!-- FEATURED FLAT AREA START -->
+            <div class="featured-flat-area pb-60">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-title-2 text-center">
+                                <h2>PROPERTY FOR SALE</h2>
+                                <p>Sheltek is the best theme for  elit, sed do eiusmod tempor dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minim veniam, quis nostrud</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="featured-flat">
+                        <div class="row">
+                            <!-- flat-item -->
+                            {% for sale in housesrandlist %}
+                                {% if 'sale' in sale %}
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="flat-item">
+                                    <div class="flat-item-image">
+                                        <a href="#"><img src="{% static 'images/flat/1.jpg' %}" alt=""></a>
+                                        <div class="flat-link">
+                                            <a href="#">More Details</a>
+                                        </div>
+                                        <ul class="flat-desc">
+                                            <li>
+                                                <img src="{% static 'images/icons/4.png' %}" alt="">
+                                                <span>450 sqft</span>
+                                            </li>
+                                            <li>
+                                                <img src="{% static 'images/icons/5.png' %}" alt="">
+                                                <span>5</span>
+                                            </li>
+                                            <li>
+                                                <img src="{% static 'images/icons/6.png' %}" alt="">
+                                                <span>3</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="flat-item-info">
+                                        <div class="flat-title-price">
+                                            <h5><a href="#">Masons de Villa </a></h5>
+                                            <span class="price">$52,350</span>
+                                        </div>
+                                        <p><img src="{% static 'images/icons/location.png' %}" alt="">568 E 1st Ave, Ney Jersey</p>
+                                    </div>
+                                </div>
+                            </div>
+                                {% endif %}
+                            {% endfor %}
+
+                            <!-- pagination-area -->
+                            <div class="col-xs-12">
+                                <div class="pagination-area mb-60">
+                                    <ul class="pagination-list text-center">
+                                        <li><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                                        <li><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FEATURED FLAT AREA END -->
+
+            <!-- BOOKING AREA START -->
+            <div class="booking-area bg-1 call-to-bg plr-140 pt-75">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-4 col-xs-12">
+                            <div class="section-title text-white">
+                                <h3>SOME</h3>
+                                <h2 class="h1">FUN FACTOR</h2>
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-sm-8 col-xs-12">
+                            <div class="booking-conternt  clearfix">
+                                <div class="counter-content">
+                                    <!-- counter-item -->
+                                    <div class="counter-item">
+                                        <h2>
+                                            <i class="fa fa-home" aria-hidden="true"></i>
+                                            <span class="counter">999</span>
+                                        </h2>
+                                        <p>Complete Project</p>
+                                    </div>
+                                    <!-- counter-item -->
+                                    <div class="counter-item">
+                                        <h2>
+                                            <i class="fa fa-key" aria-hidden="true"></i>
+                                            <span class="counter">555</span>
+                                        </h2>
+                                        <p>Property Sold</p>
+                                    </div>
+                                    <!-- counter-item -->
+                                    <div class="counter-item">
+                                        <h2>
+                                            <i class="fa fa-smile-o" aria-hidden="true"></i>
+                                            <span class="counter">350</span>
+                                        </h2>
+                                        <p>Happy Clients</p>
+                                    </div>
+                                    <!-- counter-item -->
+                                    <div class="counter-item">
+                                        <h2>
+                                            <i class="fa fa-trophy" aria-hidden="true"></i>
+                                            <span class="counter">100</span>
+                                        </h2>
+                                        <p>Awards Win</p>
+                                    </div>
+                                </div>
+                                <div class="booking-imgae">
+                                    <img src="{% static 'images/others/booking1.png' %}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- BOOKING AREA END -->
+
+            <!-- OUR AGENTS AREA START -->
+            <div class="our-agents-area pt-115 pb-60">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-title-2 text-center">
+                                <h2>OUR AGENTS</h2>
+                                <p>Sheltek is the best theme for  elit, sed do eiusmod tempor dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minim veniam, quis nostrud</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="our-agents">
+                        <div class="row">
+                            <div class="agents-carousel">
+                                <!-- single-agent -->
+                                {% for agent in agentList %}
+                                <div class="col-md-12">
+                                    <div class="single-agent">
+                                        <div class="agent-image">
+                                            <img src="{{ agent.img.url }}" alt="">
+                                        </div>
+                                        <div class="agent-info">
+                                            <div class="agent-name">
+                                                <h5><a href="{% url 'agentDetails' agent.id %}">{{ agent.first_name }} {{ agent.last_name }}</a></h5>
+                                                <p>{{ agent.job }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="agent-info-hover">
+                                            <div class="agent-name">
+                                                <h5><a href="{% url 'agentDetails' agent.id %}">{{ agent.first_name }} {{ agent.last_name }}</a></h5>
+                                                <p>{{ agent.job }}</p>
+                                            </div>
+                                            <ul class="agent-address">
+                                                <li><img src="{% static 'images/icons/phone-2.png' %}" alt="">{{ agent.phoneNumber }} </li>
+                                                <li><img src="{% static 'images/icons/mail-close.png' %}" alt="">{{ agent.email }} </li>
+                                            </ul>
+                                            <ul class="social-media">
+                                                <li><a href="{{ agent.facebook }}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                <li><a href="{{ agent.twitter }}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                                <li><a href="{{ agent.linkedin }}"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                                <li><a href="{{ agent.google_plus }}"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- OUR AGENTS AREA END -->
+
+        </section>
+        <!-- End page content -->
+
+
+{% endblock %}

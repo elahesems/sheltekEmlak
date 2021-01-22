@@ -1,0 +1,90 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block content %}
+<title>Sheltek || Contact</title>
+        <!-- Start page content -->
+        <section id="page-content" class="page-wrapper">
+
+            <!-- CONTACT AREA START -->
+            <div class="contact-area pt-115 pb-115">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-5 col-xs-12">
+                            <!-- get-in-toch -->
+                            <div class="get-in-toch">
+                                <div class="section-title mb-30">
+                                    <h3>GET IN</h3>
+                                    <h2>TOUCH</h2>
+                                </div>
+                                <div class="contact-desc mb-50">
+                                    <p><span data-placement="top" data-toggle="tooltip" data-original-title="The name you can trust" class="tooltip-content">Sheltek</span> is the best theme for  elit, sed do eiusmod tempor dolor sit ame   tse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minim veniam, quis nostrud exercitation oris nisi ut aliquip</p>
+                                </div>
+                                {% for contact in contacts %}
+                                <ul class="contact-address">
+                                    <li>
+                                        <div class="contact-address-icon">
+                                            <img src="{% static 'images/icons/location-2.png' %}" alt="">
+                                        </div>
+                                        <div class="contact-address-info">
+                                            <span>{{ contact.countrylocation }} </span>
+                                            <span>{{ contact.location }}</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="contact-address-icon">
+                                            <img src="{% static 'images/icons/phone-3.png' %}" alt="">
+                                        </div>
+                                        <div class="contact-address-info">
+                                            <span>Telephone : {{ contact.phone }}</span>
+                                            <span>Fax : {{ contact.fax }}</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="contact-address-icon">
+                                            <img src="{% static 'images/icons/world.png' %}" alt="">
+                                        </div>
+                                        <div class="contact-address-info">
+                                            <span>Email : {{ contact.phone }}</span>
+                                            <span>Web :<a href="{{ contact.web }}" target="_blank"> {{ contact.web }}</a></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-sm-7 col-xs-12">
+                            <div class="contact-messge contact-bg">
+                                <!-- blog-details-reply -->
+                                <div class="leave-review">
+                                    <h5>Leave a Message</h5>
+                                    <form  id="contact-form" action="" method="post">
+                                        {% csrf_token %}
+                                        <input type="text" name="name" placeholder="Your name">
+                                        <input type="email" name="email" placeholder="Email">
+                                        <textarea name="message" placeholder="Write here"></textarea>
+                                        <button type="submit" class="submit-btn-1">SUBMIT</button>
+                                    </form>
+                                    {% if messages %}
+			                        <ul class="messages" style="text-align: left">
+			                        	{% for message in messages %}
+			                        		<li {% if message.tags %} class="{{ message.tags }}"{% endif %}><span style="color: #38c738; font-weight: 700; ">{{ message }}</span></li>
+			                        	{% endfor %}
+			                        </ul>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- CONTACT AREA END -->
+
+            <!-- GOOGLE MAP AREA START -->
+            <div class="google-map-area">
+                <div id="googleMap">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12497.886177041508!2d27.1766507!3d38.4536737!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb16364e47894b32f!2sFolkart%20Towers!5e0!3m2!1str!2str!4v1607456649536!5m2!1str!2str" width="100%" height="655px" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div>
+            </div>
+            <!-- GOOGLE MAP AREA END -->
+        </section>
+{% endblock %}

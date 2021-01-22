@@ -1,0 +1,485 @@
+{% extends 'master.html' %}
+{% load globalfunctions %}
+{% load static %}
+
+{% block content %}
+<title>Sheltek || Home</title>
+        <!-- SLIDER SECTION START -->
+        <div class="slider-3 youtube-bg bg-opacity-black-10">
+            <div class="slider-content-3 text-center">
+                <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+                    <h1 class="slider-1-title-2">FIND YOUR DREAM HOUSE WITH US</h1>
+                </div>
+                <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="2s">
+                    <a class="slider-button mt-40" href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDER SECTION END -->
+
+        <!-- Start page content -->
+        <section id="page-content" class="page-wrapper">
+            
+            <!-- FIND HOME AREA START -->
+            <div class="find-home-area bg-blue call-to-bg plr-140 pt-60 pb-20">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3 col-xs-12">
+                            <div class="section-title text-white">
+                                <h3>FIND YOUR</h3>
+                                <h2 class="h1">HOME HERE</h2>
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-xs-12">
+                            <div class="find-homes">
+                                <div class="row">
+                                    <div class="col-sm-3 col-xs-12">
+                                        <div class="find-home-item custom-select">                  
+                                            <select class="selectpicker" title="Location" data-hide-disabled="true" data-live-search="true">
+                                                <optgroup disabled="disabled" label="disabled">
+                                                    <option>Hidden</option>
+                                                </optgroup>
+                                                <optgroup label="Australia">
+                                                    <option>Sydney</option>
+                                                    <option>Melbourne</option>
+                                                    <option>Cairns</option>
+                                                </optgroup>
+                                                <optgroup label="USA">
+                                                    <option>South Carolina</option>
+                                                    <option>Florida</option>
+                                                    <option>Rhode Island</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-12">
+                                        <div class="find-home-item custom-select">                  
+                                            <select class="selectpicker" title="Sub - Location" data-hide-disabled="true" data-live-search="true">
+                                                <optgroup disabled="disabled" label="disabled">
+                                                    <option>Hidden</option>
+                                                </optgroup>
+                                                <optgroup label="Australia">
+                                                    <option>southeastern coast</option>
+                                                    <option>southeastern tip</option>
+                                                    <option>northwest corner</option>
+                                                </optgroup>
+                                                <optgroup label="USA">
+                                                    <option>Charleston</option>
+                                                    <option>St. Petersburg</option>
+                                                    <option>Newport</option>
+                                                </optgroup>
+                                            </select>
+                                        </div> 
+                                    </div>
+                                    <div class="col-sm-3 col-xs-12">
+                                        <div class="find-home-item">
+                                            <input type="text" name="min-area" placeholder="Min area (sqft)">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-12">
+                                        <div class="find-home-item">
+                                            <input type="text" name="max-area" placeholder="Max area (sqft)">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-12">
+                                        <div class="find-home-item  custom-select">                  
+                                            <select class="selectpicker" title="No. of Beadrooms" data-hide-disabled="true">
+                                                <optgroup  label="1">
+                                                    <option label="1">1 Beadrooms</option>
+                                                    <option>2 Beadrooms</option>
+                                                    <option>3 Beadrooms</option>
+                                                    <option>4 Beadrooms</option>
+                                                    <option>5 Beadrooms</option>
+                                                </optgroup>
+                                            </select>
+                                        </div> 
+                                    </div>
+                                    <div class="col-sm-3 col-xs-12">
+                                        <div class="find-home-item custom-select">                  
+                                            <select class="selectpicker" title="No. of Bathrooms" data-hide-disabled="true">
+                                                <optgroup label="2">
+                                                    <option>1 Bathrooms</option>
+                                                    <option>2 Bathrooms</option>
+                                                    <option>3 Bathrooms</option>
+                                                    <option>4 Bathrooms</option>
+                                                    <option>5 Bathrooms</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <div class="row">
+                                            <div class="col-sm-7 col-xs-12">
+                                                <div class="find-home-item">
+                                                    <!-- shop-filter -->
+                                                    <div class="shop-filter">
+                                                        <div class="price_filter">
+                                                            <div class="price_slider_amount">
+                                                                <input type="submit"  value="You range :"/> 
+                                                                <input type="text" id="amount" name="price"  placeholder="Add Your Price" /> 
+                                                            </div>
+                                                            <div id="slider-range"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-5 col-xs-12">
+                                                <div class="find-home-item mb-0-xs">
+                                                    <a class="button-1 btn-block btn-hover-1" href="#">SEARCH</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FIND HOME AREA END -->
+            
+            <!-- ABOUT SHELTEK AREA START -->
+            <div class="about-sheltek-area ptb-115">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="section-title mb-30">
+                                <h3>SOME WORD </h3>
+                                <h2>ABOUT SHELTEK</h2>
+                            </div>
+                            <div class="about-sheltek-info">
+                                <p><span data-placement="top" data-toggle="tooltip" data-original-title="The name you can trust" class="tooltip-content">Sheltek</span> is the best theme for  elit, sed do eiusmod tempor dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minim veniam, quis nostrud exercitation oris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolo.</p>
+                                <p>Lorem is a dummy text do eiusmod tempor dolor sit amet, onsectetur adip iscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliqua Ut enim onsectetur </p>
+                                <p>Lorem is a dummy text do eiusmod tempor dolor sit amet, onsectetur adip iscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliqua Ut enim onsectetur </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="about-image">
+                                <a href="{% url 'about' %}"><img src="{%static 'images/about/about1.jpg' %}" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ABOUT SHELTEK AREA END -->
+            
+            <!-- SERVICES AREA START -->
+            <div class="services-area pb-60">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-title-2 text-center">
+                                <h2>OUR SERVICES</h2>
+                                <p>Sheltek is the best theme for  elit, sed do eiusmod tempor dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minim veniam, quis nostrud</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="service-carousel">
+                            <!-- service-item -->
+                            {% for service in  services %}
+                            <div class="col-md-12">
+                                <div class="service-item">
+                                    <div class="service-item-image">
+                                        <a href="{% url 'serviceDetails' service.id %}"><img src="{{ service.img.url }}" alt=""></a>
+                                    </div>
+                                    <div class="service-item-info">
+                                        <h5><a href="{% url 'serviceDetails' service.id %}">{{ service.title}}</a></h5>
+                                        <p>{{ service.summaryOfDescriptions | safe }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- SERVICES AREA END -->
+            
+            <!-- BOOKING AREA START -->
+            <div class="booking-area bg-1 call-to-bg plr-140 pt-75">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-4 col-xs-12">
+                            <div class="section-title text-white">
+                                <h3>BOOK YOUR</h3>
+                                <h2 class="h1">HOME HERE</h2>
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-sm-8 col-xs-12">
+                            <div class="booking-conternt clearfix">
+                                <div class="book-house text-white">
+                                    <h2>BOOK YO`UR APPARTMENT OR HOUSE </h2>
+                                    <h2 class="h5">CALL US ON : +0123  456  789  </h2>
+                                </div>
+                                <div class="booking-imgae">
+                                    <img src="{%static 'images/others/booking1.png' %}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- BOOKING AREA END -->
+            
+            <!-- FEATURED FLAT AREA START -->
+            <div class="featured-flat-area pt-115 pb-80">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-title-2 text-center">
+                                <h2>Featured PROPERTY</h2>
+                                <p>Sheltek is the best theme for  elit, sed do eiusmod tempor dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minim veniam, quis nostrud</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="featured-flat">
+                        <div class="row">
+                            <!-- flat-item -->
+                            {% for house in houseList %}
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="flat-item">
+                                    <div class="flat-item-image">
+                                        <span class="for-sale">{{ house.type }}</span>
+                                        {% getProfileDefualtPic house.id %}
+                                        <a href="{% url 'propertiesDetails' house.id %}"><img src="{{ defaultPic.image.url }}" alt=""></a>
+                                        <div class="flat-link">
+                                            <a href="{% url 'propertiesDetails' house.id %}">More Details</a>
+                                        </div>
+                                        <ul class="flat-desc">
+                                            <li>
+                                                <img src="{%static 'images/icons/4.png' %}" alt="">
+                                                <span>{{ house.square }} sqft</span>
+                                            </li>
+                                            <li>
+                                                <img src="{%static 'images/icons/5.png' %}" alt="">
+                                                <span>{{ house.rooms }}</span>
+                                            </li>
+                                            <li>
+                                                <img src="{%static 'images/icons/6.png' %}" alt="">
+                                                <span>{{ house.bathrooms }}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="flat-item-info">
+                                        <div class="flat-title-price">
+                                            <h5><a href="{% url 'propertiesDetails' house.id %}">{{ house.name }} {{ house.homeName }} </a></h5>
+                                            <span class="price">{{ house.price_unit }} {{ house.price }}</span>
+                                        </div>
+                                        <p><img src="{%static 'images/icons/location.png' %}" alt="">{{ house.address }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FEATURED FLAT AREA END -->
+            
+            <!-- FEATURES AREA START -->
+            <div class="features-area fix">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-7 col-md-offset-5">
+                            <div class="features-info bg-gray">
+                                <div class="section-title mb-30">
+                                    <h3>HERE IS</h3>
+                                    <h2 class="h1">AWESOME FEATUES</h2>
+                                </div>
+                                {% for feature in features %}
+                                <div class="features-desc">
+                                    <p><span data-placement="top" data-toggle="tooltip" data-original-title="The name you can trust" class="tooltip-content">Sheltek</span>{{ feature.descriptions }}</p>
+                                </div>
+                                <div class="features-include">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-6 col-sm-4">
+                                            <div class="features-include-list">
+                                                <h6><img src="{%static 'images/icons/7.png' %}" alt="">Fully Furnished</h6>
+                                                <p>{{ feature.Furnished }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-4">
+                                            <div class="features-include-list">
+                                                <h6><img src="{%static 'images/icons/7.png' %}" alt="">Royal Touch Paint</h6>
+                                                <p>{{ feature.RoyalTouchPaint }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-4">
+                                            <div class="features-include-list">
+                                                <h6><img src="{%static 'images/icons/7.png' %}" alt="">Latest Interior Design</h6>
+                                                <p>{{ feature.Design }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-4">
+                                            <div class="features-include-list">
+                                                <h6><img src="{%static 'images/icons/7.png' %}" alt="">Non Stop Security</h6>
+                                                <p>{{ feature.Security }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-4">
+                                            <div class="features-include-list">
+                                                <h6><img src="{%static 'images/icons/7.png' %}" alt="">Living Inside a Nature</h6>
+                                                <p>{{ feature.LivingInside }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-4">
+                                            <div class="features-include-list">
+                                                <h6><img src="{%static 'images/icons/7.png' %}" alt="">Luxurious Fittings</h6>
+                                                <p>{{ feature.Fittings }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FEATURES AREA END -->
+            
+            <!-- OUR AGENTS AREA START -->
+            <div class="our-agents-area pt-115 pb-55">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-title-2 text-center">
+                                <h2>OUR AGENTS</h2>
+                                <p>Sheltek is the best theme for  elit, sed do eiusmod tempor dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minim veniam, quis nostrud</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="our-agents">
+                        <div class="row">
+                            <div class="agents-carousel">
+                                <!-- single-agent -->
+                                {% for agent in agentList %}
+                                <div class="col-md-12">
+                                    <div class="single-agent">
+                                        <div class="agent-image">
+                                            <img src="{{ agent.img.url }}" alt="">
+                                        </div>
+                                        <div class="agent-info">
+                                            <div class="agent-name">
+                                                <h5><a href="{% url 'agentDetails' agent.id %}">{{ agent.first_name }} {{ agent.last_name }}</a></h5>
+                                                <p>{{ agent.job }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="agent-info-hover">
+                                            <div class="agent-name">
+                                                <h5><a href="{% url 'agentDetails' agent.id %}">{{ agent.first_name }} {{ agent.last_name }}</a></h5>
+                                                <p>{{ agent.job }}</p>
+                                            </div>
+                                            <ul class="agent-address">
+                                                <li><img src="{% static 'images/icons/phone-2.png' %}" alt="">{{ agent.phoneNumber }} </li>
+                                                <li><img src="{% static 'images/icons/mail-close.png' %}" alt="">{{ agent.email }} </li>
+                                            </ul>
+                                            <ul class="social-media">
+                                                <li><a href="{{ agent.facebook }}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                <li><a href="{{ agent.twitter }}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                                <li><a href="{{ agent.linkedin }}"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                                <li><a href="{{ agent.google_plus }}"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <!-- single-agent -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- OUR AGENTS AREA END -->
+
+            <!-- TESTIMONIAL AREA START -->
+            <div class="testimonial-area pb-115">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="testimonial">
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-9">
+                                        <div class="section-title mb-30">
+                                            <h3>SOME OF OUR</h3>
+                                            <h2 class="h1">HAPPY CLIENTS</h2>
+                                        </div>
+                                        <div class="testimonial-carousel dots-right-btm">
+                                            <!-- testimonial-item -->
+                                            <div class="testimonial-item">
+                                                <div class="testimonial-brief">
+                                                    <p><span data-placement="top" data-toggle="tooltip" data-original-title="The name you can trust" class="tooltip-content">Sheltek</span> is the best theme for  elit, sed do eiusmod tempor dolor sit amet, conse ctetur adipiscing elit, ed do eiusmod tempor incididunt ut labore et lorna aliquatd minim veniam, quis nostrud exercitation oris nisi ut aliquip ex ea commodo equat. Duis aute irure dolo. liquatd minim veniam, quis nostrud exercitation oris nisi ut aliquip ex ea commodo equat. Duis aute irure dolo uis nostrud exercitation</p>
+                                                </div>
+                                                <h6>Zasica Luci, <span>CEO</span></h6>
+                                            </div>
+                                            <!-- testimonial-item -->
+                                            <div class="testimonial-item">
+                                                <div class="testimonial-brief">
+                                                    <p><span data-placement="top" data-toggle="tooltip" data-original-title="The name you can trust" class="tooltip-content">Sheltek</span> is the best theme for  elit, sed do eiusmod tempor dolor sit amet, conse ctetur adipiscing elit, ed do eiusmod tempor incididunt ut labore et lorna aliquatd minim veniam, quis nostrud exercitation oris nisi ut aliquip ex ea commodo equat. Duis aute irure dolo. liquatd minim veniam, quis nostrud exercitation oris nisi ut aliquip ex ea commodo equat. Duis aute irure dolo uis nostrud exercitation</p>
+                                                </div>
+                                                <h6>Zasica Luci, <span>CEO</span></h6>
+                                            </div>
+                                            <!-- testimonial-item -->
+                                            <div class="testimonial-item">
+                                                <div class="testimonial-brief">
+                                                    <p><span data-placement="top" data-toggle="tooltip" data-original-title="The name you can trust" class="tooltip-content">Sheltek</span> is the best theme for  elit, sed do eiusmod tempor dolor sit amet, conse ctetur adipiscing elit, ed do eiusmod tempor incididunt ut labore et lorna aliquatd minim veniam, quis nostrud exercitation oris nisi ut aliquip ex ea commodo equat. Duis aute irure dolo. liquatd minim veniam, quis nostrud exercitation oris nisi ut aliquip ex ea commodo equat. Duis aute irure dolo uis nostrud exercitation</p>
+                                                </div>
+                                                <h6>Zasica Luci, <span>CEO</span></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-3">
+                                        <div class="testimonial-image">
+                                            <img src="{%static 'images/others/testimonial.jpg' %}" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- TESTIMONIAL AREA END -->
+
+            <!-- BLOG AREA START -->
+            <div class="blog-area pb-60">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-title-2 text-center">
+                                <h2>FROM BLOG</h2>
+                                <p>Sheltek is the best theme for  elit, sed do eiusmod tempor dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minim veniam, quis nostrud</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="blog-carousel">
+                            <!-- blog-item -->
+                            {% for blog in blogs %}
+                            <div class="col-md-12">
+                                <article class="blog-item bg-gray">
+                                    <div class="blog-image">
+                                        <a href="{% url 'blogDetails' blog.id %}"><img src="{{ blog.img.url }}" alt=""></a>
+                                    </div>
+                                    <div class="blog-info">
+                                        <div class="post-title-time">
+                                            <h5><a href="{% url 'blogDetails' blog.id %}">{{ blog.name }}</a></h5>
+                                            <p>{{ blog.inDate }}</p>
+                                        </div>
+                                        <p>{{ blog.aboutBuilding| safe }}</p>
+                                        <a class="read-more" href="{% url 'blogDetails' blog.id %}">Read more</a>
+                                    </div>
+                                </article>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- BLOG AREA END -->
+        </section>
+{% endblock %}
+
+
+

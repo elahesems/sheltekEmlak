@@ -1,0 +1,87 @@
+{% extends 'master.html' %}
+{% load static %}
+{% load globalfunctions %}
+{% block content %}
+    <title>Sheltek || Properties</title>
+        <!-- BREADCRUMBS AREA START -->
+        <div class="breadcrumbs-area bread-bg-1 bg-opacity-black-70">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="breadcrumbs">
+                            <h2 class="breadcrumbs-title">Properties</h2>
+                            <ul class="breadcrumbs-list">
+                                <li><a href="{% url 'home' %}">Home</a></li>
+                                <li>Properties</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- BREADCRUMBS AREA END -->
+
+        <!-- Start page content -->
+        <section id="page-content" class="page-wrapper">
+
+            <!-- FEATURED FLAT AREA START -->
+            <div class="featured-flat-area pt-115 pb-60">
+                <div class="container">
+                    <div class="featured-flat">
+                        <div class="row">
+                            <!-- flat-item -->
+                            {% for house in houses %}
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="flat-item">
+                                    <div class="flat-item-image">
+                                        <span class="for-sale">{{ house.type }}</span>
+                                        {% getProfileDefualtPic house.id %}
+                                        <a href="{% url 'propertiesDetails' house.id %}"><img src="{{ defaultPic.image.url }}" alt=""></a>
+                                        <div class="flat-link">
+                                            <a href="{% url 'propertiesDetails' house.id %}">More Details</a>
+                                        </div>
+                                        <ul class="flat-desc">
+                                            <li>
+                                                <img src="{% static 'images/icons/4.png' %}" alt="">
+                                                <span>{{ house.square }} sqft</span>
+                                            </li>
+                                            <li>
+                                                <img src="{% static 'images/icons/5.png' %}" alt="">
+                                                <span>{{ house.rooms }}</span>
+                                            </li>
+                                            <li>
+                                                <img src="{% static 'images/icons/6.png' %}" alt="">
+                                                <span>{{ house.bathrooms }}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="flat-item-info">
+                                        <div class="flat-title-price">
+                                            <h5><a href="{% url 'propertiesDetails' house.id %}">{{ house.name }} de {{ house.typehome }} </a></h5>
+                                            <span class="price">{{ house.price_unit }} {{ house.price }}</span>
+                                        </div>
+                                        <p><img src="{% static 'images/icons/location.png' %}" alt="">{{ house.address }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+{# --------------------------------------------------#}
+                            <!-- pagination-area -->
+                            <div class="col-xs-12">
+                                <div class="pagination-area mb-60">
+                                    <ul class="pagination-list text-center">
+                                        <li><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                                        <li><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FEATURED FLAT AREA END -->
+
+        </section>
+{% endblock %}

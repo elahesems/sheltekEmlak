@@ -1,0 +1,152 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block content %}
+    <title>Sheltek || Agent Details</title>
+        <!-- BREADCRUMBS AREA START -->
+        <div class="breadcrumbs-area bread-bg-1 bg-opacity-black-70">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="breadcrumbs">
+                            <h2 class="breadcrumbs-title">Single Agent</h2>
+                            <ul class="breadcrumbs-list">
+                                <li><a href="{% url 'home' %}">Home</a></li>
+                                <li><a href="{% url 'agent' %}">Agent</a></li>
+                                <li>Single Agent</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- BREADCRUMBS AREA END -->
+
+        <!-- Start page content -->
+        <section id="page-content" class="page-wrapper">
+
+            <!-- AGENTS DETAILS ABOUT START -->
+            <div class="agents-details-about pt-115">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="agent-details-desc-info">
+                                <div class="agent-details-name">
+                                    <h3>{{ agents.first_name }} {{ agents.last_name }}</h3>
+                                    <p>{{ agents.job }}</p>
+                                </div>
+                                <div class="agent-details-brief">
+                                    <p><span data-placement="top" data-toggle="tooltip" data-original-title="Graphics Designer of HasTech" class="tooltip-content">{{ agents.first_name }} {{ agents.last_name }} </span> is a {{ agents.job }} with <span class="text-theme"><b>{{ agents.workExperience }} {{ agents.experience }} </b></span>  of sale Homes. He achive success with his honesty, determination, hardwork and commetment.</p>
+                                </div>
+                                <div class="agent-details-biography">
+                                    <h5>Biography</h5>
+                                    <p>{{ agents.biography | safe }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-4">
+                                    <div class="agent-details-image">
+                                        <img src="{{ agents.img.url }}" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-8">
+                                    <div class="agent-details-contact">
+                                        <h5>Contact Details</h5>
+                                        <p>Lorem ipsum dolor sit amet consec tinge sed do eiumod tempor </p>
+                                        <h6>Phone</h6>
+                                        <p><img src="{% static 'images/icons/phone-2.png' %}" alt="">{{ agents.phoneNumber }} </p>
+                                        <h6>Email</h6>
+                                        <p><img src="{% static 'images/icons/mail-close.png' %}" alt="">{{ agents.email }}</p>
+                                        <h6>Skype</h6>
+                                        <p><img src="{% static 'images/icons/15.png' %}" alt="">skype id : {{ agents.skypeid }}</p>
+                                        <!-- social-media -->
+                                        <ul class="social-media">
+                                            <li><a href="{{ agents.facebook }}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                            <li><a href="{{ agents.twitter }}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            <li><a href="{{ agents.linkedin }}"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                            <li><a href="{{ agents.google_plus }}"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- AGENTS DETAILS ABOUT END -->
+
+            <!-- COUNTER AREA START -->
+            <div class="counter-area pt-60 pb-115">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="counter-item-content-2 text-center">
+                                <!-- counter-item -->
+                                <div class="counter-item-2">
+                                    <h2>
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                        <span class="counter">999</span>
+                                    </h2>
+                                    <p>Complete Project</p>
+                                </div>
+                                <!-- counter-item -->
+                                <div class="counter-item-2">
+                                    <h2>
+                                        <i class="fa fa-key" aria-hidden="true"></i>
+                                        <span class="counter">999</span>
+                                    </h2>
+                                    <p>Property Sold</p>
+                                </div>
+                                <!-- counter-item -->
+                                <div class="counter-item-2">
+                                    <h2>
+                                        <i class="fa fa-smile-o" aria-hidden="true"></i>
+                                        <span class="counter">999</span>
+                                    </h2>
+                                    <p>Happy Clients</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- COUNTER AREA END -->
+
+            <!-- EXPERIENCE INQUIRY AREA START -->
+            <div class="experience-inquiry-area pb-115">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="experience">
+                                <h5>Wroking Experience</h5>
+                                <p>{{ agents.first_name }} {{ agents.last_name }} {{ agents.discriptions | safe }} </p>
+                                <div class="author-quote">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="inquery leave-review">
+                                <h5>Contact for any Inquiry</h5>
+                                <form action="#">
+                                    <div class="row">
+                                        <div class="col-md-6 col-xs-12">
+                                            <input type="text" name="name" placeholder="Your name">
+                                        </div>
+                                        <div class="col-md-6 col-xs-12">
+                                            <input type="email" name="email" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <input type="text" name="phone" placeholder="Phone">
+                                    <textarea placeholder="Write here"></textarea>
+                                    <button type="button" class="submit-btn-1">SEND</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- EXPERIENCE INQUIRY AREA END -->
+
+        </section>
+{% endblock %}
