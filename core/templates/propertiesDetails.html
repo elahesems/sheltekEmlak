@@ -177,12 +177,20 @@
                                     <div class="col-md-7  col-sm-7 col-xs-12">
                                         <div class="leave-review">
                                             <h5>Leave a Review</h5>
-                                            <form action="#">
+                                            <form action="#" method="post">
+                                                {% csrf_token %}
                                                 <input type="text" name="name" placeholder="Your name">
                                                 <input type="email" name="email" placeholder="Email here">
-                                                <textarea></textarea>
-                                                <button type="button" class="submit-btn-1">SUBMIT REVIEW</button>
+                                                <textarea name="message" placeholder="Write here"></textarea>
+                                                <button type="submit" class="submit-btn-1">SUBMIT REVIEW</button>
                                             </form>
+                                            {% if messages %}
+                                                <ul class="messages" style="text-align: left">
+			                        	            {% for message in messages %}
+			                        		            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}><span style="color: #38c738; font-weight: 700; ">{{ message }}</span></li>
+			                        	            {% endfor %}
+			                                    </ul>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>

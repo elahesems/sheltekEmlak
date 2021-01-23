@@ -153,6 +153,35 @@ def propertiesHouse(request):
 def propertiesDetails(request,pk):
     house = House.objects.get(id=pk)
     housespic = Pictures.objects.filter(homeName=house)
+
+    #send message to agent
+    if request.method=='POST':
+        name= request.POST.get('name')
+        email= request.POST.get('email')
+        message= request.POST.get('message')
+        dateOfMail = datetime.now()
+        formatDate = dateOfMail.strftime("%Y-%M-%d %H:%M:%S")
+        text = f"Yeni başvuru bilgileri adı:  {name}                      tarih:{formatDate} \n " \
+               f"eposta adresi: {email}\r\n\n" \
+               f" bu mesajı göndermiştir: {message}"
+        textOfCustomer = f'Sayın {name} mesajınız bize başarıyla gönderildi'
+        title = 'Yeni Başvuru Var!'
+        titleOfCustomer = 'mesajınız bize ulaşmıştır!'
+
+        agentMail = house.agent.email
+        sent_to = [agentMail]
+
+        sendToCustomer = [email]
+        print(sendToCustomer)
+
+
+        try:
+            send_mail(title, text, agentMail, sent_to, fail_silently=False)
+            send_mail(titleOfCustomer, textOfCustomer, agentMail, sendToCustomer, fail_silently=False)
+            messages.info(request, 'Mesajiniz başarılı bir şekilde gönderildi!')
+        except:
+            message.error(request, 'Bir hata uluştu lütfen tekrar deneyiniz!')
+
     context={'house':house,'housespic':housespic}
     return render(request, 'propertiesDetails.html', context)
 
