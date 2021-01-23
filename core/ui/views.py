@@ -16,23 +16,25 @@ from django.contrib import messages
 
 @unauthenticated_user
 def registerPage(request):
-    if request.user.is_authenticated:  # {age fard login shode_
-        return redirect('home')  # _befrestesh be 'home'page.
-    else:  # ama age login nashode:
-        form = CreateUserForm  # inja chon requestemun "get" hastesh in formo avval migre (1)
-        if request.method == 'POST':  # request "post" miyad inja (3)
-            form = CreateUserForm(request.POST)  # ettelaato control mikene (4)
+    indate = datetime.now()
+    if request.user.is_authenticated:
+        return redirect('home')
+    else:
+        form = CreateUserForm
+        if request.method == 'POST':
+            form = CreateUserForm(request.POST)
             if form.is_valid():
                 form.save()
                 user = form.cleaned_data.get('username')
                 messages.success(request, 'Account was created for ' + user)
                 return redirect('login')
-    context = {'form': form}
+    context = {'form': form, 'indate':indate}
     return render(request, 'register.html', context)
 
 
 @unauthenticated_user
 def loginPage(request):
+    indate = datetime.now()
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -45,7 +47,7 @@ def loginPage(request):
         else:
             messages.info(request, 'Username OR password is incorrect')
 
-    context = {}
+    context = {'indate':indate}
     return render(request, 'login.html', context)
 
 def logoutUser(request):
@@ -144,13 +146,13 @@ def agentDetails(request,pk):
 def propertiesHouse(request):
     houses = House.objects.all()
     brands = BrandsItem.objects.all()
-    context = {'houses':houses, 'brands':brands}
+    indate = datetime.now()
+    context = {'houses':houses, 'brands':brands, 'indate':indate}
     return render(request,'properties.html', context)
 
 def propertiesDetails(request,pk):
     house = House.objects.get(id=pk)
     housespic = Pictures.objects.filter(homeName=house)
-
     context={'house':house,'housespic':housespic}
     return render(request, 'propertiesDetails.html', context)
 
@@ -162,8 +164,7 @@ def service(request):
 
 def serviceDetails(request,pk):
     services = Service.objects.get(id=pk)
-    houses = House.objects.all()
-    housesrandlist = random.choices(houses, k=6)
+    houses = House.objects.filter(type='sale')
     brands = BrandsItem.objects.all()
     agents = Agent.objects.all()
     agentsByDate = Agent.objects.all().order_by('-inDate')
@@ -173,8 +174,9 @@ def serviceDetails(request,pk):
     for agent in agentsByid:
         agentList.append(agent)
         i += 1
-    context = {'services':services, 'houses':houses,'housesrandlist':housesrandlist,
-               'agents':agents, 'agentList':agentList, 'brands':brands}
+    context = {'services':services, 'houses':houses,
+               'agents':agents, 'agentList':agentList,
+               'brands':brands}
     return render(request, 'service-details.html', context)
 
 def blog(request):
@@ -194,7 +196,22 @@ def featuresHome(request):
     context = {'features':features,'brands':brands}
     return render(request,'features.html',context)
 
-# def footer(request):
+# def footer(request,pk):
+#     blogs = Blog.objects.all()
+#     rand = random.choices(blogs, k=3)
+    # blogsByDate = blogs.objects.all().order_by('-inDate')
+    # blogsByid = blogsByDate.order_by('-id')
+    # blogsList = []
+    # i = 0
+    # for blog in blogsByid:
+    #     blogsList.append(blog)
+    #     i += 1
+    #     if i == 3:
+    #         break
+
+
+
+
 #     if request.method=='POST':
 #         email= request.POST.get('email2')
 #         message= request.POST.get('message2')
@@ -219,5 +236,5 @@ def featuresHome(request):
 #             messages.info(request, 'Mesajiniz başarılı bir şekilde gönderildi!')
 #         except:
 #             message.error(request, 'Bir hata uluştu lütfen tekrar deneyiniz!')
-#     context = {'contact',contact}
+#     context = {'rand',rand}
 #     return render(request, 'footer.html', context)

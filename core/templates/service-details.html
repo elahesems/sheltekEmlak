@@ -1,5 +1,6 @@
 {% extends 'master.html' %}
 {% load static %}
+{% load globalfunctions %}
 {% block content %}
     <title>Sheltek || Service Details</title>
         <!-- BREADCRUMBS AREA START -->
@@ -63,40 +64,42 @@
                     <div class="featured-flat">
                         <div class="row">
                             <!-- flat-item -->
-                            {% for sale in housesrandlist %}
-                                {% if 'sale' in sale %}
+                            {% for house in houses %}
+
                             <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="flat-item">
                                     <div class="flat-item-image">
-                                        <a href="#"><img src="{% static 'images/flat/1.jpg' %}" alt=""></a>
+                                        <span class="for-sale">{{ house.type }}</span>
+                                        {% getProfileDefualtPic house.id %}
+                                        <a href="{% url 'propertiesDetails' house.id %}"><img src="{{ defaultPic.image.url }}" alt=""></a>
                                         <div class="flat-link">
-                                            <a href="#">More Details</a>
+                                            <a href="{% url 'propertiesDetails' house.id %}">More Details</a>
                                         </div>
                                         <ul class="flat-desc">
                                             <li>
                                                 <img src="{% static 'images/icons/4.png' %}" alt="">
-                                                <span>450 sqft</span>
+                                                <span>{{ house.square }} sqft</span>
                                             </li>
                                             <li>
                                                 <img src="{% static 'images/icons/5.png' %}" alt="">
-                                                <span>5</span>
+                                                <span>{{ house.rooms }}</span>
                                             </li>
                                             <li>
                                                 <img src="{% static 'images/icons/6.png' %}" alt="">
-                                                <span>3</span>
+                                                <span>{{ house.bathrooms }}</span>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="flat-item-info">
                                         <div class="flat-title-price">
-                                            <h5><a href="#">Masons de Villa </a></h5>
-                                            <span class="price">$52,350</span>
+                                            <h5><a href="{% url 'propertiesDetails' house.id %}">{{ house.name }} de {{ house.typehome }} </a></h5>
+                                            <span class="price">{{ house.price_unit }} {{ house.price }}</span>
                                         </div>
-                                        <p><img src="{% static 'images/icons/location.png' %}" alt="">568 E 1st Ave, Ney Jersey</p>
+                                        <p><img src="{% static 'images/icons/location.png' %}" alt="">{{ house.address }}</p>
                                     </div>
                                 </div>
                             </div>
-                                {% endif %}
+
                             {% endfor %}
 
                             <!-- pagination-area -->

@@ -83,16 +83,16 @@ class House(models.Model):
         ('sale','sale')
     )
     amenitiesChoices=(
-        ('Air Conditioning','Air Conditioning'),
+        ('Air Conditioning','AirConditioning'),
         ('Bedding','Bedding'),
         ('Balcony','Balcony'),
-        ('Cable TV','Cable TV'),
+        ('Cable TV','CableTV'),
         ('Internet','Internet'),
         ('Parking','Parking'),
         ('Lift','Lift'),
         ('Pool','Pool'),
         ('Dishwasher','Dishwasher'),
-        ('Toaster','Toaster'),
+        ('Toaster','Toaster')
     )
     name = models.CharField(max_length=200, verbose_name='Home name')
     agent = models.ForeignKey(Agent, on_delete=models.CASCADE, null=True, blank=True, verbose_name='AGENT')

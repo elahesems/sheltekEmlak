@@ -34,7 +34,8 @@
                             <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="flat-item">
                                     <div class="flat-item-image">
-                                        <span class="for-sale">{{ house.type }}</span>
+                                        <span class="for-sale">For {{ house.type }}</span>
+
                                         {% getProfileDefualtPic house.id %}
                                         <a href="{% url 'propertiesDetails' house.id %}"><img src="{{ defaultPic.image.url }}" alt=""></a>
                                         <div class="flat-link">

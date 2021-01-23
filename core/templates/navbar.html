@@ -28,6 +28,7 @@
                                         <p>We are open 9 am - 10pm</p>
                                     </div>
                                 </div>
+
                                 <div><span style="color: #0b0b0b;margin-right:10px"> {% if request.user.is_authenticated %} Welcome To SHELTEK ,{{request.user}} {% else %} Welcome To SHELTEK {% endif %}</span></div><br>
                                 <span><a style="border-color: #0b0b0b;margin-right:30px" href="{% url 'logout' %}">logout</a> </span>
 

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ui',
+    'django.contrib.humanize',
     'crispy_forms',
     'multiselectfield',
     'ckeditor',

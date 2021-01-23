@@ -26,4 +26,15 @@ def getProfileDefualtPic(context,houseId=''):
 
     return ""
 
-
+#
+# def gethouseforsale(context,houseId=''):
+#     house = House.objects.get(id=houseId)
+#     try:
+#         defaultpic = Pictures.objects.get(homeName=house,status=1,cover=1,)
+#
+#     except:
+#         defaultpic = Pictures.objects.filter(homeName=house, status=1)[0]
+#
+#     context['defaultPic'] = defaultpic
+#
+#     return ""

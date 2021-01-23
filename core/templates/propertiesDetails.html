@@ -1,4 +1,5 @@
 {% extends 'master.html' %}
+{% load humanize %}
 {% load static %}
 {% load globalfunctions %}
 {% block content %}
@@ -34,13 +35,13 @@
                             <div class="pro-details-image mb-60">
                                 <div class="pro-details-big-image">
                                     <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane fade in active" id="pro-1"> <span>{{ house.name }} de {{ house.homeName }}</span>
+                                        <div role="tabpanel" class="tab-pane fade in active" id="pro-1"> <span>{{ house.name }} de {{ house.homeName }}  </span>
                                             {% getProfileDefualtPic house.id %}
                                             <a href="{{ defaultPic.image.url }}" data-lightbox="image-1" data-title="Sheltek Properties - 1">
                                                 <img  style="min-height: 383px;min-width: 750px" src="{{ defaultPic.image.url }}" alt="">
                                             </a>
                                         </div>
-                                        <span>{{ houses.inDate }}</span>
+                                    <span>{{ house.inDate|date }}</span>
 
                                     </div>
                                 </div>
@@ -79,7 +80,9 @@
                                             <h5>Amenities</h5>
                                             <div class="pro-details-amenities-inner bg-gray">
                                                 <ul class="amenities-list">
-                                                    {{ houses.amenities | unordered_list }}
+{#                                                    {{ houses.amenities|unordered_list }}#}
+                                                     <li>{{ houses.amenities|unordered_list }}</li>
+
                                                 </ul>
                                             </div>
                                         </div>

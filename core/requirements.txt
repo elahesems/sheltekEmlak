@@ -1,0 +1,15 @@
+asgiref==3.3.1
+decorators==2.0.7
+Django==3.1.5
+django-ckeditor==6.0.0
+django-countries==7.0
+django-crispy-forms==1.10.0
+django-humanize==0.1.2
+django-js-asset==1.2.2
+django-multiselectfield==0.1.12
+house==0.1.10
+humanize==3.2.0
+Pillow==8.1.0
+pytz==2020.5
+sqlparse==0.4.1
+steov==0.1.13
