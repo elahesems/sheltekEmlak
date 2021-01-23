@@ -134,38 +134,45 @@
                                 <div class="row">
                                     <!-- single-agent -->
 
+
+
                                     <div class="col-md-5 col-sm-5 col-xs-12">
                                         <div class="pro-details-agent">
                                             <h5>Contact Agent</h5>
+
                                             <div class="single-agent">
+
                                                 <div class="agent-image">
-                                                    <img src="{% static 'images/agents/2.jpg' %}" alt="">
+                                                    <img src="{{ house.agent.img.url }}" alt="">
                                                 </div>
                                                 <div class="agent-info">
                                                     <div class="agent-name">
-                                                        <h5><a href="#">Eva Sharlin</a></h5>
-                                                        <p>Real Estate Broker</p>
-                                                    </div>
+                                                        <h5><a href="{% url 'agentDetails' house.agent.id %}">{{ house.agent.first_name }} {{ house.agent.last_name }}</a></h5>
+                                                        <p>{{ house.agent.job }}</p>
+                                                    </div>{{ house.agent.img.url }}
                                                 </div>
                                                 <div class="agent-info-hover">
                                                     <div class="agent-name">
-                                                        <h5><a href="#">Eva Sharlin</a></h5>
-                                                        <p>Real Estate Broker</p>
+                                                        <h5><a href="{% url 'agentDetails' house.agent.id %}">{{ house.agent.first_name }} {{ house.agent.last_name }}</a></h5>
+                                                        <p>{{ house.agent.job }}</p>
                                                     </div>
                                                     <ul class="agent-address">
-                                                        <li><img src="{% static 'images/icons/phone-2.png' %}" alt="">+1245  785  659 </li>
-                                                        <li><img src="{% static 'images/icons/mail-close.png' %}" alt="">eva@gmail.com </li>
+                                                        <li><img src="{% static 'images/icons/phone-2.png' %}" alt="">{{ house.agent.phoneNumber }} </li>
+                                                        <li><img src="{% static 'images/icons/mail-close.png' %}" alt="">{{ house.agent.email }} </li>
                                                     </ul>
                                                     <ul class="social-media">
-                                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                                        <li><a href="{{ house.agent.facebook }}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                        <li><a href="{{ house.agent.twitter }}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                                        <li><a href="{{ house.agent.linkedin }}"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                                        <li><a href="{{ house.agent.google_plus }}"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
                                                     </ul>
                                                 </div>
+
                                             </div>
+
                                         </div>
                                     </div>
+
                                     <!-- leave-massage -->
                                     <div class="col-md-7  col-sm-7 col-xs-12">
                                         <div class="leave-review">
