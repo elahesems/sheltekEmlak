@@ -128,7 +128,8 @@
                         <div class="col-sm-6">
                             <div class="inquery leave-review">
                                 <h5>Contact for any Inquiry</h5>
-                                <form action="#">
+                                <form action="#" method="post">
+                                    {% csrf_token %}
                                     <div class="row">
                                         <div class="col-md-6 col-xs-12">
                                             <input type="text" name="name" placeholder="Your name">
@@ -138,9 +139,16 @@
                                         </div>
                                     </div>
                                     <input type="text" name="phone" placeholder="Phone">
-                                    <textarea placeholder="Write here"></textarea>
-                                    <button type="button" class="submit-btn-1">SEND</button>
+                                    <textarea name="message" placeholder="Write here"></textarea>
+                                    <button type="submit" class="submit-btn-1">SEND</button>
                                 </form>
+                                {% if messages %}
+                                    <ul class="messages" style="text-align: left">
+                                        {% for message in messages %}
+                                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}><span style="color: #38c738; font-weight: 700; ">{{ message }}</span></li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

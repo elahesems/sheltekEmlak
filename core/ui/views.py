@@ -140,6 +140,34 @@ def agent(request):
 def agentDetails(request,pk):
     agents = Agent.objects.get(id=pk)
     brands = BrandsItem.objects.all()
+    # ********send message to agent********
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        message = request.POST.get('message')
+        dateOfMail = datetime.now()
+        formatDate = dateOfMail.strftime("%Y-%M-%d %H:%M:%S")
+        text = f"Yeni başvuru bilgileri adı:  {name}                      tarih:{formatDate} \n " \
+               f"telefon numarası: {phone} \n "\
+               f"eposta adresi: {email}\r\n\n" \
+               f" bu mesajı göndermiştir: {message}"
+        textOfCustomer = f'Sayın {name} mesajınız bize başarıyla gönderildi'
+        title = 'Yeni Başvuru Var!'
+        titleOfCustomer = 'mesajınız bize ulaşmıştır!'
+
+        agentMail = agents.email
+        sent_to = [agentMail]
+
+        sendToCustomer = [email]
+        print(sendToCustomer)
+
+        try:
+            send_mail(title, text, agentMail, sent_to, fail_silently=False)
+            send_mail(titleOfCustomer, textOfCustomer, agentMail, sendToCustomer, fail_silently=False)
+            messages.info(request, 'Mesajiniz başarılı bir şekilde gönderildi!')
+        except:
+            message.error(request, 'Bir hata uluştu lütfen tekrar deneyiniz!')
     context = {'agents':agents, 'brands':brands}
     return render(request, 'agentDetails.html', context)
 
