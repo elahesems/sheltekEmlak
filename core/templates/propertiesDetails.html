@@ -41,7 +41,8 @@
                                                 <img  style="min-height: 383px;min-width: 750px" src="{{ defaultPic.image.url }}" alt="">
                                             </a>
                                         </div>
-                                    <span>{{ house.inDate|date }}</span>
+                                    {% comment %}<span>{{ house.inDate|date:"Y-l-d" }}</span>{% endcomment %}
+                                    <span>{{ house.inDate|naturaltime }}</span>
 
                                     </div>
                                 </div>
@@ -80,8 +81,7 @@
                                             <h5>Amenities</h5>
                                             <div class="pro-details-amenities-inner bg-gray">
                                                 <ul class="amenities-list">
-{#                                                    {{ houses.amenities|unordered_list }}#}
-                                                     <li>{{ houses.amenities|unordered_list }}</li>
+                                                      {{ house.amenities|unordered_list }}
 
                                                 </ul>
                                             </div>

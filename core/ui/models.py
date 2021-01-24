@@ -108,7 +108,7 @@ class House(models.Model):
     type = models.CharField(max_length=150, choices=type_of,default='rent')
     amenities = MultiSelectField(choices=amenitiesChoices, verbose_name='AMENITIES', null=True, blank=True)
     descriptions=RichTextField(null=True, blank=True)
-    inDate = models.DateField(auto_now_add=True, null=True, blank=True, verbose_name='ENTRY DATE')
+    inDate = models.DateTimeField(auto_now_add=True, null=True, blank=True, verbose_name='ENTRY DATE')
     status = models.BooleanField(default=True, verbose_name='to be seen ?')
     # descriptions=RichTextField(verbose_name='descriptions details',null=True,blank=True)
     def __str__(self):

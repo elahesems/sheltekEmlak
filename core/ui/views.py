@@ -154,7 +154,7 @@ def propertiesDetails(request,pk):
     house = House.objects.get(id=pk)
     housespic = Pictures.objects.filter(homeName=house)
 
-    #send message to agent
+    #********send message to agent********
     if request.method=='POST':
         name= request.POST.get('name')
         email= request.POST.get('email')
