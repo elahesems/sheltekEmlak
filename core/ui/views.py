@@ -225,45 +225,8 @@ def featuresHome(request):
     context = {'features':features,'brands':brands}
     return render(request,'features.html',context)
 
-# def footer(request,pk):
-#     blogs = Blog.objects.all()
-#     rand = random.choices(blogs, k=3)
-    # blogsByDate = blogs.objects.all().order_by('-inDate')
-    # blogsByid = blogsByDate.order_by('-id')
-    # blogsList = []
-    # i = 0
-    # for blog in blogsByid:
-    #     blogsList.append(blog)
-    #     i += 1
-    #     if i == 3:
-    #         break
 
 
 
 
-#     if request.method=='POST':
-#         email= request.POST.get('email2')
-#         message= request.POST.get('message2')
-#         dateOfMail = datetime.now()
-#         formatDate = dateOfMail.strftime("%Y-%M-%d %H:%M:%S")
-#         text = f"eposta adresi: {email}                    tarih:{formatDate} \n " \
-#                f" bu mesajı göndermiştir: {message}"
-#         textOfCustomer = f'mesajınız bize başarıyla gönderildi'
-#         title = 'Yeni Başvuru Var!'
-#         titleOfCustomer = 'mesajınız bize ulaşmıştır!'
-#
-#         hostEmail = settings.EMAIL_HOST_USER
-#         sent_to = [hostEmail]
-#
-#         sendToCustomer = [email]
-#         print(sendToCustomer)
-#         print(hostEmail)
-#
-#         try:
-#             send_mail(title, text, hostEmail, sent_to, fail_silently=False)
-#             send_mail(titleOfCustomer, textOfCustomer, hostEmail, sendToCustomer, fail_silently=False)
-#             messages.info(request, 'Mesajiniz başarılı bir şekilde gönderildi!')
-#         except:
-#             message.error(request, 'Bir hata uluştu lütfen tekrar deneyiniz!')
-#     context = {'rand',rand}
-#     return render(request, 'footer.html', context)
+
