@@ -95,7 +95,7 @@ def contact(request):
         email= request.POST.get('email')
         message= request.POST.get('message')
         dateOfMail = datetime.now()
-        formatDate = dateOfMail.strftime("%Y-%M-%d %H:%M:%S")
+        formatDate = dateOfMail.strftime("%Y-%m-%d %H:%M:%S")
         text = f"Yeni başvuru bilgileri adı:  {name}                      tarih:{formatDate} \n " \
                f"eposta adresi: {email}\r\n\n" \
                f" bu mesajı göndermiştir: {message}"
@@ -120,7 +120,6 @@ def contact(request):
     context ={'contacts':contacts}
     return render(request, 'contact.html', context)
 
-@login_required(login_url='login')
 def about(request):
     about = About.objects.all()
     brands = BrandsItem.objects.all()
@@ -147,7 +146,7 @@ def agentDetails(request,pk):
         phone = request.POST.get('phone')
         message = request.POST.get('message')
         dateOfMail = datetime.now()
-        formatDate = dateOfMail.strftime("%Y-%M-%d %H:%M:%S")
+        formatDate = dateOfMail.strftime("%Y-%m-%d %H:%M:%S")
         text = f"Yeni başvuru bilgileri adı:  {name}                      tarih:{formatDate} \n " \
                f"telefon numarası: {phone} \n "\
                f"eposta adresi: {email}\r\n\n" \
@@ -177,7 +176,7 @@ def propertiesHouse(request):
     indate = datetime.now()
     context = {'houses':houses, 'brands':brands, 'indate':indate}
     return render(request,'properties.html', context)
-
+@login_required(login_url='login')
 def propertiesDetails(request,pk):
     house = House.objects.get(id=pk)
     housespic = Pictures.objects.filter(homeName=house)
@@ -188,7 +187,7 @@ def propertiesDetails(request,pk):
         email= request.POST.get('email')
         message= request.POST.get('message')
         dateOfMail = datetime.now()
-        formatDate = dateOfMail.strftime("%Y-%M-%d %H:%M:%S")
+        formatDate = dateOfMail.strftime("%Y-%m-%d %H:%M:%S")
         text = f"Yeni başvuru bilgileri adı:  {name}                      tarih:{formatDate} \n " \
                f"eposta adresi: {email}\r\n\n" \
                f" bu mesajı göndermiştir: {message}"
@@ -196,20 +195,19 @@ def propertiesDetails(request,pk):
         title = 'Yeni Başvuru Var!'
         titleOfCustomer = 'mesajınız bize ulaşmıştır!'
 
-        agentMail = house.agent.email
-        sent_to = [agentMail]
+        hostEmail = settings.EMAIL_HOST_USER
+        sent_to = [hostEmail]
 
         sendToCustomer = [email]
         print(sendToCustomer)
-
+        print(hostEmail)
 
         try:
-            send_mail(title, text, agentMail, sent_to, fail_silently=False)
-            send_mail(titleOfCustomer, textOfCustomer, agentMail, sendToCustomer, fail_silently=False)
+            send_mail(title, text, hostEmail, sent_to, fail_silently=False)
+            send_mail(titleOfCustomer, textOfCustomer, hostEmail, sendToCustomer, fail_silently=False)
             messages.info(request, 'Mesajiniz başarılı bir şekilde gönderildi!')
         except:
             message.error(request, 'Bir hata uluştu lütfen tekrar deneyiniz!')
-
     context={'house':house,'housespic':housespic}
     return render(request, 'propertiesDetails.html', context)
 

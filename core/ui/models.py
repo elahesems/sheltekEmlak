@@ -157,10 +157,13 @@ class Blog(models.Model):
 class Pictures(models.Model):
     homeName = models.ForeignKey(House, related_name="Pictures", verbose_name="resimler",on_delete=models.CASCADE)
     image = models.ImageField(upload_to='media/', verbose_name="resim seç")
-    status = models.BooleanField(default=True,verbose_name='Gosterilsin mi?')
-    cover = models.BooleanField(default=False,verbose_name='kapak resim mi?')
+    status = models.BooleanField(default=True,verbose_name='to be seen ??')
+    cover = models.BooleanField(default=False)
     def delete(self,*args,**kwargs):
         self.image.delete()
         super().delete(*args,**kwargs)
     class Meta:
         verbose_name_plural='Images for House'
+
+
+
