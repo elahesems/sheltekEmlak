@@ -155,7 +155,7 @@ class Blog(models.Model):
 
 
 class Pictures(models.Model):
-    homeName = models.ForeignKey(House, related_name="Pictures", verbose_name="resimler",on_delete=models.CASCADE)
+    homeName = models.ForeignKey(House, verbose_name="House Name",on_delete=models.CASCADE)
     image = models.ImageField(upload_to='media/', verbose_name="resim seç")
     status = models.BooleanField(default=True,verbose_name='to be seen ??')
     cover = models.BooleanField(default=False)
@@ -166,4 +166,7 @@ class Pictures(models.Model):
         verbose_name_plural='Images for House'
 
 
+class CtrlComment(models.Model):
+    homeName = models.ForeignKey(House, verbose_name="House name",on_delete=models.CASCADE)
+    status = models.BooleanField(default=False,verbose_name='to be seen ??')
 

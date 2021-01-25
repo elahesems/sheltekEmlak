@@ -159,8 +159,10 @@
                                                 <textarea name="message" placeholder="Write here"></textarea>
                                                 <button type="submit" class="submit-btn-1">SUBMIT REVIEW</button>
                                             </form>
+
                                             {% if messages %}
                                                 <ul class="messages" style="text-align: left">
+
 			                        	            {% for message in messages %}
 			                        		            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}><span style="color: #38c738; font-weight: 700; ">{{ message }}</span></li>
 			                        	            {% endfor %}
@@ -280,104 +282,41 @@
                                 <h5>Featured Property</h5>
                                 <div class="row">
                                     <!-- flat-item -->
+                                    {% for item in FeaturedProperty %}
                                     <div class="col-md-12 col-sm-6 col-xs-12">
                                         <div class="flat-item">
                                             <div class="flat-item-image">
-                                                <span class="for-sale">For Sale</span>
-                                                <a href="#"><img src="{% static 'images/flat/1.jpg' %}" alt=""></a>
+                                                <span class="for-sale">For {{ item.type }}</span>
+                                                {% getProfileDefualtPic item.id %}
+                                                <a href="{% url 'propertiesDetails' item.id %}"><img src="{{ defaultPic.image.url }}" alt=""></a>
                                                 <div class="flat-link">
-                                                    <a href="#">More Details</a>
+                                                    <a href="{% url 'propertiesDetails' item.id %}">More Details</a>
                                                 </div>
                                                 <ul class="flat-desc">
                                                     <li>
                                                         <img src="{% static 'images/icons/4.png' %}" alt="">
-                                                        <span>450 sqft</span>
+                                                        <span>{{ item.square }} sqft</span>
                                                     </li>
                                                     <li>
                                                         <img src="{% static 'images/icons/5.png' %}" alt="">
-                                                        <span>5</span>
+                                                        <span>{{ item.rooms }}</span>
                                                     </li>
                                                     <li>
                                                         <img src="{% static 'images/icons/6.png' %}" alt="">
-                                                        <span>3</span>
+                                                        <span>{{ item.bathrooms }}</span>
                                                     </li>
                                                 </ul>
                                             </div>
                                             <div class="flat-item-info">
                                                 <div class="flat-title-price">
-                                                    <h5><a href="#">Masons de Villa </a></h5>
-                                                    <span class="price">$52,350</span>
+                                                    <h5><a href="{% url 'propertiesDetails' item.id %}">{{ item.name }} de {{ item.typehome }} </a></h5>
+                                                    <span class="price">{{ item.price_unit }} {{ item.price }}</span>
                                                 </div>
-                                                <p><img src="{% static 'images/icons/location.png' %}" alt="">568 E 1st Ave, Ney Jersey</p>
+                                                <p><img src="{% static 'images/icons/location.png' %}" alt="">{{ item.address }}</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- flat-item -->
-                                    <div class="col-md-12 col-sm-6 col-xs-12">
-                                        <div class="flat-item">
-                                            <div class="flat-item-image">
-                                                <span class="for-sale">For Sale</span>
-                                                <a href="#"><img src="{% static 'images/flat/2.jpg' %}" alt=""></a>
-                                                <div class="flat-link">
-                                                    <a href="#">More Details</a>
-                                                </div>
-                                                <ul class="flat-desc">
-                                                    <li>
-                                                        <img src="{% static 'images/icons/4.png' %}" alt="">
-                                                        <span>450 sqft</span>
-                                                    </li>
-                                                    <li>
-                                                        <img src="{% static 'images/icons/5.png' %}" alt="">
-                                                        <span>5</span>
-                                                    </li>
-                                                    <li>
-                                                        <img src="{% static 'images/icons/6.png' %}" alt="">
-                                                        <span>3</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="flat-item-info">
-                                                <div class="flat-title-price">
-                                                    <h5><a href="#">Masons de Villa </a></h5>
-                                                    <span class="price">$52,350</span>
-                                                </div>
-                                                <p><img src="{% static 'images/icons/location.png' %}" alt="">568 E 1st Ave, Ney Jersey</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- flat-item -->
-                                    <div class="col-md-12 hidden-sm col-xs-12">
-                                        <div class="flat-item">
-                                            <div class="flat-item-image">
-                                                <span class="for-sale">For Sale</span>
-                                                <a href="#"><img src="{% static 'images/flat/3.jpg' %}" alt=""></a>
-                                                <div class="flat-link">
-                                                    <a href="#">More Details</a>
-                                                </div>
-                                                <ul class="flat-desc">
-                                                    <li>
-                                                        <img src="{% static 'images/icons/4.png' %}" alt="">
-                                                        <span>450 sqft</span>
-                                                    </li>
-                                                    <li>
-                                                        <img src="{% static 'images/icons/5.png' %}" alt="">
-                                                        <span>5</span>
-                                                    </li>
-                                                    <li>
-                                                        <img src="{% static 'images/icons/6.png' %}" alt="">
-                                                        <span>3</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="flat-item-info">
-                                                <div class="flat-title-price">
-                                                    <h5><a href="#">Masons de Villa </a></h5>
-                                                    <span class="price">$52,350</span>
-                                                </div>
-                                                <p><img src="{% static 'images/icons/location.png' %}" alt="">568 E 1st Ave, Ney Jersey</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
                             </aside>
                             <!-- widget-video -->

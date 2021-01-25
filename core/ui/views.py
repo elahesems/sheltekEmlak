@@ -176,10 +176,13 @@ def propertiesHouse(request):
     indate = datetime.now()
     context = {'houses':houses, 'brands':brands, 'indate':indate}
     return render(request,'properties.html', context)
+
 @login_required(login_url='login')
 def propertiesDetails(request,pk):
     house = House.objects.get(id=pk)
     housespic = Pictures.objects.filter(homeName=house)
+    allHouse = House.objects.all()
+    FeaturedProperty = random.choices(allHouse, k=3)
 
     #********send message to agent********
     if request.method=='POST':
@@ -193,10 +196,11 @@ def propertiesDetails(request,pk):
                f" bu mesajı göndermiştir: {message}"
         textOfCustomer = f'Sayın {name} mesajınız bize başarıyla gönderildi'
         title = 'Yeni Başvuru Var!'
-        titleOfCustomer = 'mesajınız bize ulaşmıştır!'
+        titleOfCustomer = 'mesajınız bize ulaşmıştır inceledikten sonra paylaşilacaktır!'
 
         hostEmail = settings.EMAIL_HOST_USER
         sent_to = [hostEmail]
+
 
         sendToCustomer = [email]
         print(sendToCustomer)
@@ -208,7 +212,7 @@ def propertiesDetails(request,pk):
             messages.info(request, 'Mesajiniz başarılı bir şekilde gönderildi!')
         except:
             message.error(request, 'Bir hata uluştu lütfen tekrar deneyiniz!')
-    context={'house':house,'housespic':housespic}
+    context={'house':house,'housespic':housespic, 'FeaturedProperty':FeaturedProperty}
     return render(request, 'propertiesDetails.html', context)
 
 def service(request):
@@ -252,7 +256,11 @@ def featuresHome(request):
     return render(request,'features.html',context)
 
 
-
+# def footer(request):
+#     blogs = Blog.objects.all()
+#     randBlogs = random.choices(blogs, k=3)
+#     context = {'randBlogs':randBlogs}
+#     return render(request, 'footer.html',context)
 
 
 
