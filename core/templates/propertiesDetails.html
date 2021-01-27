@@ -2,6 +2,7 @@
 {% load humanize %}
 {% load static %}
 {% load globalfunctions %}
+{% load widget_tweaks %}
 {% block content %}
 <title>Sheltek || Properties Details</title>
         <!-- BREADCRUMBS AREA START -->
@@ -170,9 +171,15 @@
                                             {% endif %}
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {{ form }}
+                            <input type="submit">
+                        </form>
                         <div class="col-md-4">
                             <!-- widget-search-property -->
                             <aside class="widget widget-search-property">

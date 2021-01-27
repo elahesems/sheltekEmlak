@@ -166,7 +166,15 @@ class Pictures(models.Model):
         verbose_name_plural='Images for House'
 
 
-class CtrlComment(models.Model):
-    homeName = models.ForeignKey(House, verbose_name="House name",on_delete=models.CASCADE)
-    status = models.BooleanField(default=False,verbose_name='to be seen ??')
 
+
+
+class Comment(models.Model):
+    home = models.ForeignKey('House', on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, verbose_name='FirstName and LastName')
+    comments = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+    status = models.BooleanField(default=False, verbose_name='to be seen ??')
+
+    def __str__(self):
+        return self.name

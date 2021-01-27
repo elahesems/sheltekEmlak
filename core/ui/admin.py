@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from ui import models
 from ui.models import Sliders, About, Contact, Agent, FeaturesHome, BrandsItem, House, Service, Blog, HomeName, \
-    Pictures, CtrlComment
+    Pictures, Comment
 
 
 class ModifiedSlider(admin.ModelAdmin):
@@ -94,6 +94,6 @@ admin.site.register(Service, ModifiedService)
 admin.site.register(Blog, ModifiedBlog)
 admin.site.register(HomeName, ModifiedHomeName)
 admin.site.register(Pictures,ModifiedPictures)
-admin.site.register(CtrlComment)
+admin.site.register(Comment)
 
 

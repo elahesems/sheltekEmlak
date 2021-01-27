@@ -5,8 +5,7 @@ import random
 from datetime import datetime
 from django.conf import settings
 from django.core.mail import send_mail
-from django.shortcuts import render
-
+from .forms import CommentForm
 from ui.decorators import unauthenticated_user
 from .forms import CreateUserForm
 from ui.models import *
@@ -183,7 +182,6 @@ def propertiesDetails(request,pk):
     housespic = Pictures.objects.filter(homeName=house)
     allHouse = House.objects.all()
     FeaturedProperty = random.choices(allHouse, k=3)
-
     #********send message to agent********
     if request.method=='POST':
         name= request.POST.get('name')
@@ -212,7 +210,16 @@ def propertiesDetails(request,pk):
             messages.info(request, 'Mesajiniz başarılı bir şekilde gönderildi!')
         except:
             message.error(request, 'Bir hata uluştu lütfen tekrar deneyiniz!')
-    context={'house':house,'housespic':housespic, 'FeaturedProperty':FeaturedProperty}
+
+    form = CommentForm()
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+
+    context={'house':house,'housespic':housespic, 'form':form,
+             'FeaturedProperty':FeaturedProperty}
     return render(request, 'propertiesDetails.html', context)
 
 def service(request):
