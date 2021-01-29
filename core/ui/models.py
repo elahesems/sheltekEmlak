@@ -79,8 +79,9 @@ class House(models.Model):
 
     )
     type_of=(
-        ('rent','rent'),
-        ('sale','sale')
+        ('Rent','rent'),
+        ('Sale','sale'),
+        ('Part Rent','partRent')
     )
     amenitiesChoices=(
         ('Air Conditioning','AirConditioning'),
@@ -106,6 +107,7 @@ class House(models.Model):
     kitchen = models.IntegerField(null=True, blank=True, verbose_name='KITCHEN')
     address = models.CharField(max_length=150, null=True, blank=True, verbose_name='ADDRESS')
     type = models.CharField(max_length=150, choices=type_of,default='rent')
+    capacity = models.IntegerField(verbose_name='capacity for Part Rent', null=True, blank=True)
     amenities = MultiSelectField(choices=amenitiesChoices, verbose_name='AMENITIES', null=True, blank=True)
     descriptions=RichTextField(null=True, blank=True)
     inDate = models.DateTimeField(auto_now_add=True, null=True, blank=True, verbose_name='ENTRY DATE')
