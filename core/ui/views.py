@@ -180,6 +180,7 @@ def propertiesHouse(request):
 def propertiesDetails(request,pk):
     house = House.objects.get(id=pk)
     housespic = Pictures.objects.filter(homeName=house)
+
     allHouse = House.objects.all()
     FeaturedProperty = random.choices(allHouse, k=3)
     #********send message to agent********
@@ -216,10 +217,10 @@ def propertiesDetails(request,pk):
         form = CommentForm(request.POST)
         if form.is_valid():
             form.save()
-
+    comment = Comment.objects.filter(home=house, status=True)
 
     context={'house':house,'housespic':housespic, 'form':form,
-             'FeaturedProperty':FeaturedProperty}
+             'FeaturedProperty':FeaturedProperty, 'comment':comment}
     return render(request, 'propertiesDetails.html', context)
 
 def service(request):

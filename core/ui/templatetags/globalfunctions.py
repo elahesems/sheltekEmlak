@@ -38,3 +38,4 @@ def getProfileDefualtPic(context,houseId=''):
 #     context['defaultPic'] = defaultpic
 #
 #     return ""
+#****************************************************************************
