@@ -242,7 +242,7 @@
                                     <div class="flat-item-image">
                                         <span class="for-sale">{{ house.type }}</span>
                                         {% getProfileDefualtPic house.id %}
-                                        <a href="{% url 'propertiesDetails' house.id %}"><img src="{{ defaultPic.image.url }}" alt=""></a>
+                                        <a href="{% url 'propertiesDetails' house.id %}"><img style="min-height: 285px" src="{{ defaultPic.image.url }}" alt=""></a>
                                         <div class="flat-link">
                                             <a href="{% url 'propertiesDetails' house.id %}">More Details</a>
                                         </div>
@@ -477,12 +477,6 @@
                     </div>
                 </div>
             </div>
-            <!-- BLOG AREA END -->
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit">
-        </form>
         </section>
 {% endblock %}
 

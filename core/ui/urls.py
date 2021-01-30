@@ -17,6 +17,7 @@ urlpatterns =[
     path('blog/',views.blog,name="blog"),
     path('blog_details/<str:pk>/',views.blogDetails,name="blogDetails"),
     path('features/',views.featuresHome,name="features"),
+    path('404/',views.errors,name="errors"),
 
 
 ]

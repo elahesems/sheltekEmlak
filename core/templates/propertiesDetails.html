@@ -1,7 +1,6 @@
 {% extends 'master.html' %}
 {% load humanize %}
 {% load static %}
-{% load crispy_forms_tags %}
 {% load globalfunctions %}
 {% load widget_tweaks %}
 {% block content %}
@@ -101,7 +100,7 @@
                             <div class="pro-details-feedback mb-40">
                                 <h5> Comments</h5>
                                 <!-- media -->
-                                {% for item in comment %}
+                                {% for item in commentsList %}
                                 <div class="media">
                                     <a class="media-left" href="#">
                                         <img src="{% static 'images/avatar/3.jpg' %}" alt="">
@@ -162,10 +161,8 @@
                                                 <textarea name="message" placeholder="Write here"></textarea>
                                                 <button type="submit" class="submit-btn-1">SUBMIT REVIEW</button>
                                             </form>
-
                                             {% if messages %}
                                                 <ul class="messages" style="text-align: left">
-
 			                        	            {% for message in messages %}
 			                        		            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}><span style="color: #38c738; font-weight: 700; ">{{ message }}</span></li>
 			                        	            {% endfor %}
@@ -173,15 +170,20 @@
                                             {% endif %}
                                         </div>
                                     </div>
-
+                                    <div style="margin-right: 500px" class="col-md-9  col-sm-9 col-xs-12">
+                                        <br><hr>
+                                        <form action="" method="post">
+                                            {% csrf_token %}
+                                            {{ form }}
+                                            <input type="submit">
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                            <form action="" method="post">
-                                {% csrf_token %}
-                                {{ form }}
-                                <input type="submit">
-                            </form>
+
+
+
                         <div class="col-md-4">
                             <!-- widget-search-property -->
                             <aside class="widget widget-search-property">

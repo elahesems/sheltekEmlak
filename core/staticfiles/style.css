@@ -1409,6 +1409,8 @@
 .error-area {
     background: rgba(0, 0, 0, 0.9) url("images/others/error.jpg") no-repeat scroll right top;
     position: relative;
+
+
 }
 .error-area:before {
     background: #020202 none repeat scroll 0 0;

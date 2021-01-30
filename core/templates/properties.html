@@ -37,7 +37,7 @@
                                         <span class="for-sale">For {{ house.type }}</span>
 
                                         {% getProfileDefualtPic house.id %}
-                                        <a href="{% url 'propertiesDetails' house.id %}"><img src="{{ defaultPic.image.url }}" alt=""></a>
+                                        <a href="{% url 'propertiesDetails' house.id %}"><img style="min-height: 285px" src="{{ defaultPic.image.url }}" alt=""></a>
                                         <div class="flat-link">
                                             <a href="{% url 'propertiesDetails' house.id %}">More Details</a>
                                         </div>

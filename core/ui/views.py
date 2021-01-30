@@ -37,22 +37,18 @@ def loginPage(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-
         user = authenticate(request, username=username, password=password)
-
         if user is not None:
             login(request, user)
             return redirect('home')
         else:
             messages.info(request, 'Username OR password is incorrect')
-
     context = {'indate':indate}
     return render(request, 'login.html', context)
 
 def logoutUser(request):
     logout(request)
     return redirect('login')
-
 
 def home(request):
     sliders = Sliders.objects.all()
@@ -68,7 +64,6 @@ def home(request):
     agentList = []
     i = 0
     for agent in agentsByid:
-
         agentList.append(agent)
         i += 1
     housesByDate = House.objects.all().order_by('-inDate')
@@ -80,7 +75,6 @@ def home(request):
         i += 1
         if i == 9:
             break
-
     context = {'sliders':sliders,'abouts':abouts,'features':features,'agents':agents,
                'agentList':agentList,'brands':brands,'services':services,
                 'houseList':houseList, 'houses':houses, 'blogs':blogs}
@@ -101,21 +95,17 @@ def contact(request):
         textOfCustomer = f'Sayın {name} mesajınız bize başarıyla gönderildi'
         title = 'Yeni Başvuru Var!'
         titleOfCustomer = 'mesajınız bize ulaşmıştır!'
-
         hostEmail = settings.EMAIL_HOST_USER
         sent_to = [hostEmail]
-
         sendToCustomer = [email]
         print(sendToCustomer)
         print(hostEmail)
-
         try:
             send_mail(title, text, hostEmail, sent_to, fail_silently=False)
             send_mail(titleOfCustomer, textOfCustomer, hostEmail, sendToCustomer, fail_silently=False)
             messages.info(request, 'Mesajiniz başarılı bir şekilde gönderildi!')
         except:
             message.error(request, 'Bir hata uluştu lütfen tekrar deneyiniz!')
-
     context ={'contacts':contacts}
     return render(request, 'contact.html', context)
 
@@ -124,8 +114,21 @@ def about(request):
     brands = BrandsItem.objects.all()
     services = Service.objects.all()
     agents = Agent.objects.all()
-    context = {'about':about,'brands':brands,
-               'services':services,'agents':agents}
+    house = House.objects.all()
+    comment = Comment.objects.filter(home=house, status=True)
+    commentsByDate = Comment.objects.all().order_by('-created_date')
+    commentsByid = commentsByDate.order_by('-id')
+    commentsList = []
+    i = 0
+    for comments in commentsByid:
+        commentsList.append(comments)
+        i += 1
+        if i == 3:
+            break
+
+
+    context = {'about':about, 'brands':brands, 'comment':comment,
+               'services':services, 'agents':agents, 'commentsList':commentsList}
     return render(request,'about.html', context)
 
 
@@ -138,7 +141,7 @@ def agent(request):
 def agentDetails(request,pk):
     agents = Agent.objects.get(id=pk)
     brands = BrandsItem.objects.all()
-    # ********send message to agent********
+# ********send message to agent********
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -153,13 +156,10 @@ def agentDetails(request,pk):
         textOfCustomer = f'Sayın {name} mesajınız bize başarıyla gönderildi'
         title = 'Yeni Başvuru Var!'
         titleOfCustomer = 'mesajınız bize ulaşmıştır!'
-
         agentMail = agents.email
         sent_to = [agentMail]
-
         sendToCustomer = [email]
         print(sendToCustomer)
-
         try:
             send_mail(title, text, agentMail, sent_to, fail_silently=False)
             send_mail(titleOfCustomer, textOfCustomer, agentMail, sendToCustomer, fail_silently=False)
@@ -180,10 +180,9 @@ def propertiesHouse(request):
 def propertiesDetails(request,pk):
     house = House.objects.get(id=pk)
     housespic = Pictures.objects.filter(homeName=house)
-
     allHouse = House.objects.all()
     FeaturedProperty = random.choices(allHouse, k=3)
-    #********send message to agent********
+#********send message to agent********
     if request.method=='POST':
         name= request.POST.get('name')
         email= request.POST.get('email')
@@ -196,29 +195,24 @@ def propertiesDetails(request,pk):
         textOfCustomer = f'Sayın {name} mesajınız bize başarıyla gönderildi'
         title = 'Yeni Başvuru Var!'
         titleOfCustomer = 'mesajınız bize ulaşmıştır inceledikten sonra paylaşilacaktır!'
-
         hostEmail = settings.EMAIL_HOST_USER
         sent_to = [hostEmail]
-
-
         sendToCustomer = [email]
         print(sendToCustomer)
         print(hostEmail)
-
         try:
             send_mail(title, text, hostEmail, sent_to, fail_silently=False)
             send_mail(titleOfCustomer, textOfCustomer, hostEmail, sendToCustomer, fail_silently=False)
             messages.info(request, 'Mesajiniz başarılı bir şekilde gönderildi!')
         except:
             message.error(request, 'Bir hata uluştu lütfen tekrar deneyiniz!')
-
+#---------comment----------
     form = CommentForm()
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
             form.save()
     comment = Comment.objects.filter(home=house, status=True)
-
     context={'house':house,'housespic':housespic, 'form':form,
              'FeaturedProperty':FeaturedProperty, 'comment':comment}
     return render(request, 'propertiesDetails.html', context)
@@ -263,6 +257,10 @@ def featuresHome(request):
     context = {'features':features,'brands':brands}
     return render(request,'features.html',context)
 
+def errors(request):
+    brands = BrandsItem.objects.all()
+    context = {'brands':brands}
+    return render(request, '404.html',context)
 
 # def footer(request):
 #     blogs = Blog.objects.all()
