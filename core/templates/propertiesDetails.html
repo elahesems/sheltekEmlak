@@ -36,7 +36,7 @@
                             <div class="pro-details-image mb-60">
                                 <div class="pro-details-big-image">
                                     <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane fade in active" id="pro-1"> <span>{{ house.name }} de {{ house.homeName }}  </span>
+                                        <div role="tabpanel" class="tab-pane fade in active" id="pro-1"> <span>{{ house.name }} de {{ house.homeName }} ,{% if 'capacity' %}{{ house.capacity }}{% endif %}</span> <button href="{% url 'home' %}" type="button" value="Submit">Submit</button>
                                             {% getProfileDefualtPic house.id %}
                                             <a href="{{ defaultPic.image.url }}" data-lightbox="image-1" data-title="Sheltek Properties - 1">
                                                 <img  style="min-height: 383px;min-width: 750px" src="{{ defaultPic.image.url }}" alt="">

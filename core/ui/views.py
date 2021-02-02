@@ -173,6 +173,15 @@ def propertiesHouse(request):
     houses = House.objects.all()
     brands = BrandsItem.objects.all()
     indate = datetime.now()
+
+
+
+
+
+
+
+
+
     context = {'houses':houses, 'brands':brands, 'indate':indate}
     return render(request,'properties.html', context)
 
@@ -213,6 +222,25 @@ def propertiesDetails(request,pk):
         if form.is_valid():
             form.save()
     comment = Comment.objects.filter(home=house, status=True)
+#----------capacit----------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     context={'house':house,'housespic':housespic, 'form':form,
              'FeaturedProperty':FeaturedProperty, 'comment':comment}
     return render(request, 'propertiesDetails.html', context)
