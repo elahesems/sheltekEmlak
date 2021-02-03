@@ -5,7 +5,7 @@ import random
 from datetime import datetime
 from django.conf import settings
 from django.core.mail import send_mail
-from .forms import CommentForm
+from .forms import CommentForm, ApplayHome
 from ui.decorators import unauthenticated_user
 from .forms import CreateUserForm
 from ui.models import *
@@ -223,15 +223,13 @@ def propertiesDetails(request,pk):
             form.save()
     comment = Comment.objects.filter(home=house, status=True)
 #----------capacit----------
-
-
-
-
-
-
-
-
-
+    capacity = ApplayHome()
+    if request.method == 'POST':
+        capacity = ApplayHome(request.POST)
+        if capacity.is_valid():
+            capacity =-1
+            if capacity <= 0:
+                capacity = House.objects.filter(status=False)
 
 
 
@@ -242,7 +240,8 @@ def propertiesDetails(request,pk):
 
 
     context={'house':house,'housespic':housespic, 'form':form,
-             'FeaturedProperty':FeaturedProperty, 'comment':comment}
+             'FeaturedProperty':FeaturedProperty, 'comment':comment,
+             'capacity':capacity}
     return render(request, 'propertiesDetails.html', context)
 
 def service(request):

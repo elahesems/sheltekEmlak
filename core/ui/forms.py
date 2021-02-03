@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 
-from .models import Comment
+from .models import Comment, House
 
 
 class CreateUserForm(UserCreationForm):
@@ -16,3 +16,9 @@ class CommentForm(ModelForm):
 	class Meta:
 		model = Comment
 		fields = ['home','name','comments']
+
+class ApplayHome(ModelForm):
+
+	class Meta:
+		model = House
+		fields = ['capacity']
