@@ -39,7 +39,10 @@
                                         <div role="tabpanel" class="tab-pane fade in active" id="pro-1"> <span>{{ house.name }} de {{ house.homeName }} ,{% if 'capacity' %}{{ house.capacity }} person {% endif %}</span>
                                             <form method="POST" action="">
 						                    {% csrf_token %}
-                                                <button href="{% url 'home' %}" type="button" value="Submit">Submit</button>
+                                                <button type="button" value="Submit">Submit</button>
+                                                <div class="d-flex justify-content-center mt-3 login_container">
+				 				                    <input class="btn login_btn" type="submit" value="apply">
+				   			                    </div>
                                             </form>
                                             {% getProfileDefualtPic house.id %}
                                             <a href="{{ defaultPic.image.url }}" data-lightbox="image-1" data-title="Sheltek Properties - 1">

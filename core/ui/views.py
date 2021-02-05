@@ -5,7 +5,7 @@ import random
 from datetime import datetime
 from django.conf import settings
 from django.core.mail import send_mail
-from .forms import CommentForm, ApplayHome
+from .forms import CommentForm
 from ui.decorators import unauthenticated_user
 from .forms import CreateUserForm
 from ui.models import *
@@ -59,6 +59,16 @@ def home(request):
     services = Service.objects.all()
     agents = Agent.objects.all()
     blogs = Blog.objects.all()
+    comment = Comment.objects.filter(home=houses, status=True)
+    commentsByDate = Comment.objects.all().order_by('-created_date')
+    commentsByid = commentsByDate.order_by('-id')
+    commentsList = []
+    i = 0
+    for comments in commentsByid:
+        commentsList.append(comments)
+        i += 1
+        if i == 3:
+            break
     agentsByDate = Agent.objects.all().order_by('-inDate')
     agentsByid = agentsByDate.order_by('-id')
     agentList = []
@@ -76,8 +86,8 @@ def home(request):
         if i == 9:
             break
     context = {'sliders':sliders,'abouts':abouts,'features':features,'agents':agents,
-               'agentList':agentList,'brands':brands,'services':services,
-                'houseList':houseList, 'houses':houses, 'blogs':blogs}
+               'agentList':agentList,'brands':brands,'services':services,'comment':comment,
+                'houseList':houseList, 'houses':houses, 'blogs':blogs,'commentsList':commentsList}
     return render(request, 'index.html', context)
 
 @login_required(login_url='login')
@@ -223,13 +233,12 @@ def propertiesDetails(request,pk):
             form.save()
     comment = Comment.objects.filter(home=house, status=True)
 #----------capacit----------
-    capacity = ApplayHome()
-    if request.method == 'POST':
-        capacity = ApplayHome(request.POST)
-        if capacity.is_valid():
-            capacity =-1
-            if capacity <= 0:
-                capacity = House.objects.filter(status=False)
+
+
+
+
+
+
 
 
 
@@ -240,8 +249,7 @@ def propertiesDetails(request,pk):
 
 
     context={'house':house,'housespic':housespic, 'form':form,
-             'FeaturedProperty':FeaturedProperty, 'comment':comment,
-             'capacity':capacity}
+             'FeaturedProperty':FeaturedProperty, 'comment':comment}
     return render(request, 'propertiesDetails.html', context)
 
 def service(request):

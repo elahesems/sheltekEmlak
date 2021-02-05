@@ -407,31 +407,20 @@
                                         </div>
                                         <div class="testimonial-carousel dots-right-btm">
                                             <!-- testimonial-item -->
+                                            {% for item in commentsList %}
                                             <div class="testimonial-item">
                                                 <div class="testimonial-brief">
-                                                    <p><span data-placement="top" data-toggle="tooltip" data-original-title="The name you can trust" class="tooltip-content">Sheltek</span> is the best theme for  elit, sed do eiusmod tempor dolor sit amet, conse ctetur adipiscing elit, ed do eiusmod tempor incididunt ut labore et lorna aliquatd minim veniam, quis nostrud exercitation oris nisi ut aliquip ex ea commodo equat. Duis aute irure dolo. liquatd minim veniam, quis nostrud exercitation oris nisi ut aliquip ex ea commodo equat. Duis aute irure dolo uis nostrud exercitation</p>
+                                                    <p><span data-placement="top" data-toggle="tooltip" data-original-title="The name you can trust" class="tooltip-content"></span> {{ item.comments }}</p>
                                                 </div>
-                                                <h6>Zasica Luci, <span>CEO</span></h6>
+                                                <h6>{{ item.name }}, <span>customer</span></h6>
                                             </div>
-                                            <!-- testimonial-item -->
-                                            <div class="testimonial-item">
-                                                <div class="testimonial-brief">
-                                                    <p><span data-placement="top" data-toggle="tooltip" data-original-title="The name you can trust" class="tooltip-content">Sheltek</span> is the best theme for  elit, sed do eiusmod tempor dolor sit amet, conse ctetur adipiscing elit, ed do eiusmod tempor incididunt ut labore et lorna aliquatd minim veniam, quis nostrud exercitation oris nisi ut aliquip ex ea commodo equat. Duis aute irure dolo. liquatd minim veniam, quis nostrud exercitation oris nisi ut aliquip ex ea commodo equat. Duis aute irure dolo uis nostrud exercitation</p>
-                                                </div>
-                                                <h6>Zasica Luci, <span>CEO</span></h6>
-                                            </div>
-                                            <!-- testimonial-item -->
-                                            <div class="testimonial-item">
-                                                <div class="testimonial-brief">
-                                                    <p><span data-placement="top" data-toggle="tooltip" data-original-title="The name you can trust" class="tooltip-content">Sheltek</span> is the best theme for  elit, sed do eiusmod tempor dolor sit amet, conse ctetur adipiscing elit, ed do eiusmod tempor incididunt ut labore et lorna aliquatd minim veniam, quis nostrud exercitation oris nisi ut aliquip ex ea commodo equat. Duis aute irure dolo. liquatd minim veniam, quis nostrud exercitation oris nisi ut aliquip ex ea commodo equat. Duis aute irure dolo uis nostrud exercitation</p>
-                                                </div>
-                                                <h6>Zasica Luci, <span>CEO</span></h6>
-                                            </div>
+                                            {% endfor %}
+
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-3">
                                         <div class="testimonial-image">
-                                            <img src="{%static 'images/others/testimonial.jpg' %}" alt="">
+                                            <img src="{%static 'images/others/happy.jpg' %}" alt="">
                                         </div>
                                     </div>
                                 </div>

@@ -17,8 +17,3 @@ class CommentForm(ModelForm):
 		model = Comment
 		fields = ['home','name','comments']
 
-class ApplayHome(ModelForm):
-
-	class Meta:
-		model = House
-		fields = ['capacity']

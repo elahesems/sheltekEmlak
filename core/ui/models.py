@@ -81,7 +81,7 @@ class House(models.Model):
     type_of=(
         ('Rent','rent'),
         ('Sale','sale'),
-        ('Part Rent','partRent')
+        ('PartRent','partRent')
     )
     amenitiesChoices=(
         ('Air Conditioning','AirConditioning'),
