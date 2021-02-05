@@ -11,6 +11,7 @@ from .forms import CreateUserForm
 from ui.models import *
 from django.contrib import messages
 
+from .widgets import navbarVariables
 
 
 @unauthenticated_user
@@ -59,16 +60,6 @@ def home(request):
     services = Service.objects.all()
     agents = Agent.objects.all()
     blogs = Blog.objects.all()
-    comment = Comment.objects.filter(home=houses, status=True)
-    commentsByDate = Comment.objects.all().order_by('-created_date')
-    commentsByid = commentsByDate.order_by('-id')
-    commentsList = []
-    i = 0
-    for comments in commentsByid:
-        commentsList.append(comments)
-        i += 1
-        if i == 3:
-            break
     agentsByDate = Agent.objects.all().order_by('-inDate')
     agentsByid = agentsByDate.order_by('-id')
     agentList = []
@@ -86,8 +77,9 @@ def home(request):
         if i == 9:
             break
     context = {'sliders':sliders,'abouts':abouts,'features':features,'agents':agents,
-               'agentList':agentList,'brands':brands,'services':services,'comment':comment,
-                'houseList':houseList, 'houses':houses, 'blogs':blogs,'commentsList':commentsList}
+               'agentList':agentList,'brands':brands,'services':services,
+                'houseList':houseList, 'houses':houses, 'blogs':blogs}
+    navbarVariables(context=context)
     return render(request, 'index.html', context)
 
 @login_required(login_url='login')
@@ -124,21 +116,9 @@ def about(request):
     brands = BrandsItem.objects.all()
     services = Service.objects.all()
     agents = Agent.objects.all()
-    house = House.objects.all()
-    comment = Comment.objects.filter(home=house, status=True)
-    commentsByDate = Comment.objects.all().order_by('-created_date')
-    commentsByid = commentsByDate.order_by('-id')
-    commentsList = []
-    i = 0
-    for comments in commentsByid:
-        commentsList.append(comments)
-        i += 1
-        if i == 3:
-            break
-
-
-    context = {'about':about, 'brands':brands, 'comment':comment,
-               'services':services, 'agents':agents, 'commentsList':commentsList}
+    context = {'about':about, 'brands':brands,
+               'services':services, 'agents':agents}
+    navbarVariables(context=context)
     return render(request,'about.html', context)
 
 
@@ -183,15 +163,6 @@ def propertiesHouse(request):
     houses = House.objects.all()
     brands = BrandsItem.objects.all()
     indate = datetime.now()
-
-
-
-
-
-
-
-
-
     context = {'houses':houses, 'brands':brands, 'indate':indate}
     return render(request,'properties.html', context)
 
@@ -233,21 +204,6 @@ def propertiesDetails(request,pk):
             form.save()
     comment = Comment.objects.filter(home=house, status=True)
 #----------capacit----------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     context={'house':house,'housespic':housespic, 'form':form,
              'FeaturedProperty':FeaturedProperty, 'comment':comment}
     return render(request, 'propertiesDetails.html', context)
@@ -256,6 +212,7 @@ def service(request):
     services = Service.objects.all()
     brands = BrandsItem.objects.all()
     context = {'services':services, 'brands':brands}
+    navbarVariables(context=context)
     return render(request, 'service.html', context)
 
 def serviceDetails(request,pk):
@@ -289,7 +246,8 @@ def blogDetails(request,pk):
 def featuresHome(request):
     features = FeaturesHome.objects.all()
     brands = BrandsItem.objects.all()
-    context = {'features':features,'brands':brands}
+    context = {'features':features, 'brands':brands}
+    navbarVariables(context=context)
     return render(request,'features.html',context)
 
 def errors(request):
