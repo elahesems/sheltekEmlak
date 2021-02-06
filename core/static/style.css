@@ -725,6 +725,12 @@
     border: 1px solid #fff;
     color: #fff;
 }
+#ozel .btn-hover-1:hover {
+    border-radius: 8px;
+    background: black;
+    border: 3px solid greenyellow;
+    color: #fff;
+}
 /* ===============================
   19. Home page 2
 =============================== */

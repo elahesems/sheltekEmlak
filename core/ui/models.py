@@ -1,8 +1,12 @@
 from ckeditor_uploader.fields import RichTextUploadingField
-from django.db import models
+
 from ckeditor.fields import RichTextField
 # Create your models here.
+from django.contrib.auth.models import User
 from multiselectfield import MultiSelectField
+from django.conf import settings
+from django.db import models
+
 
 
 class Sliders(models.Model):
@@ -95,6 +99,7 @@ class House(models.Model):
         ('Dishwasher','Dishwasher'),
         ('Toaster','Toaster')
     )
+    applied_users = models.ManyToManyField( User, null=True,blank=True)
     name = models.CharField(max_length=200, verbose_name='Home name')
     agent = models.ForeignKey(Agent, on_delete=models.CASCADE, null=True, blank=True, verbose_name='AGENT')
     homeName = models.ForeignKey(HomeName, on_delete=models.CASCADE, null=True, blank=True, verbose_name='HoMeNaMe')

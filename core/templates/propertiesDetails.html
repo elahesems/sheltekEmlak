@@ -37,13 +37,22 @@
                                 <div class="pro-details-big-image">
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane fade in active" id="pro-1"> <span>{{ house.name }} de {{ house.homeName }} ,{% if 'capacity' %}{{ house.capacity }} person {% endif %}</span>
-                                            <form method="POST" action="">
-						                    {% csrf_token %}
-                                                <button type="button" value="Submit">Submit</button>
-                                                <div class="d-flex justify-content-center mt-3 login_container">
-				 				                    <input class="btn login_btn" type="submit" value="apply">
-				   			                    </div>
-                                            </form>
+                                            {% if itispartrent %}
+                                                {% if not isUserAppliedForThisHome %}
+                                                    <form  method="POST" action="">
+                                                        {% csrf_token %}
+                                                        <div id="ozel" class="find-home-item">
+
+                                                            <input class="button-1 btn-block btn-hover-1" type="submit" name="applying" value="Apply" >
+                                                        </div>
+                                                    </form>
+                                                {% else %}
+                                                    <div id="ozel" class="find-home-item">
+
+                                                            <input class="button-1 btn-block btn-hover-1" type="submit" name="applying" value="You have Applied before!" >
+                                                        </div>
+                                                {% endif %}
+                                            {% endif %}
                                             {% getProfileDefualtPic house.id %}
                                             <a href="{{ defaultPic.image.url }}" data-lightbox="image-1" data-title="Sheltek Properties - 1">
                                                 <img  style="min-height: 383px;min-width: 750px" src="{{ defaultPic.image.url }}" alt="">
@@ -166,7 +175,7 @@
                                                 <input type="text" name="name" placeholder="Your name">
                                                 <input type="email" name="email" placeholder="Email here">
                                                 <textarea name="message" placeholder="Write here"></textarea>
-                                                <button type="submit" class="submit-btn-1">SUBMIT REVIEW</button>
+                                                <button  name="newemail" type="submit" class="submit-btn-1">SUBMIT REVIEW</button>
                                             </form>
                                             {% if messages %}
                                                 <ul class="messages" style="text-align: left">
@@ -182,7 +191,7 @@
                                         <form action="" method="post">
                                             {% csrf_token %}
                                             {{ form }}
-                                            <input type="submit">
+                                            <input type="submit" name="newcomment">
                                         </form>
                                     </div>
                                 </div>
