@@ -289,7 +289,7 @@
                                 </div>
                                 {% for feature in features %}
                                 <div class="features-desc">
-                                    <p><span data-placement="top" data-toggle="tooltip" data-original-title="The name you can trust" class="tooltip-content">Sheltek</span>{{ feature.descriptions }}</p>
+                                    <p><span data-placement="top" data-toggle="tooltip" data-original-title="The name you can trust" class="tooltip-content">Sheltek</span>{{ feature.descriptions|safe }}</p>
                                 </div>
                                 <div class="features-include">
                                     <div class="row">
