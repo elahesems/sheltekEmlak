@@ -8,20 +8,28 @@ from django.core.mail import send_mail
 from .forms import CommentForm
 from ui.decorators import unauthenticated_user
 from .forms import CreateUserForm
+from django.contrib.auth.models import User
 from ui.models import *
 from django.contrib import messages
 from .widgets import navbarVariables
+#from num2words import num2words
+
 @unauthenticated_user
 def registerPage(request):
     indate = datetime.now()
     if request.user.is_authenticated:
+        print("11111")
         return redirect('home')
     else:
+        print('222222222222')
         form = CreateUserForm
         if request.method == 'POST':
             form = CreateUserForm(request.POST)
             if form.is_valid():
                 form.save()
+                _theUser= User.objects.get(username=form.cleaned_data.get('username'))
+                _account = Accounts(name=_theUser)
+                _account.save()
                 user = form.cleaned_data.get('username')
                 messages.success(request, 'Account was created for ' + user)
                 return redirect('login')
@@ -154,7 +162,7 @@ def propertiesHouse(request):
     return render(request,'properties.html', context)
 @login_required(login_url='login')
 def propertiesDetails(request,pk):
-#********send message to agent********
+    #********send message to agent********
     form = CommentForm()
     if request.method=='POST':
         if  "newcomment" in request.POST:
@@ -193,27 +201,52 @@ def propertiesDetails(request,pk):
             house.capacity = housenewCap
             house.applied_users.add(request.user)
             house.save()
-    house = House.objects.get(id=pk)
-    if house.type == 'PartRent':
-        itispartrent = True
-    else:
-        itispartrent = False
-    isUserAppliedForThisHome = False
-    listOfAppliedUser = house.applied_users.all()
-    for item in listOfAppliedUser:
+    try:
+        house = House.objects.get(id=pk)
+        _acount = Accounts.objects.get(name=request.user)
+        try:
+            fvList=FavoritedPosts.objects.get(account=_acount)
 
-        if str(item.username) == str(request.user):
-            isUserAppliedForThisHome = True
-            break
 
-    housespic = Pictures.objects.filter(homeName=house)
-    allHouse = House.objects.all()
-    FeaturedProperty = random.choices(allHouse, k=3)
-    comment = Comment.objects.filter(home=house, status=True)
+            if house in fvList.homes.all():
+                is_favorite = True
+            else:
+                is_favorite = False
+        except:
+            is_favorite = False
+        visit_count = house.visits + 1
+        house.visits = visit_count
+        house.save()
+
+        housePrice = house.price
+        housePriceWords = num2words(housePrice, lang='tr')
+        if house.type == 'PartRent':
+            itispartrent = True
+        else:
+            itispartrent = False
+        isUserAppliedForThisHome = False
+        listOfAppliedUser = house.applied_users.all()
+        for item in listOfAppliedUser:
+
+            if str(item.username) == str(request.user):
+                isUserAppliedForThisHome = True
+                break
+
+        housespic = Pictures.objects.filter(homeName=house)
+        allHouse = House.objects.all()
+        FeaturedProperty = random.choices(allHouse, k=3)
+        comment = Comment.objects.filter(home=house, status=True)
+        context = {'house': house,'is_favorite' : is_favorite  , 'housePriceWords': housePriceWords, 'itispartrent': itispartrent,
+                   'isUserAppliedForThisHome': isUserAppliedForThisHome, 'housespic': housespic, 'form': form,
+                   'FeaturedProperty': FeaturedProperty, 'comment': comment}
+        return render(request, 'propertiesDetails.html', context)
+    except:
+        return redirect('errors')
 #----------capacit----------
-    context={'house':house,'itispartrent':itispartrent,'isUserAppliedForThisHome':isUserAppliedForThisHome,'housespic':housespic, 'form':form,
-             'FeaturedProperty':FeaturedProperty, 'comment':comment}
-    return render(request, 'propertiesDetails.html', context)
+
+
+
+
 def service(request):
     services = Service.objects.all()
     brands = BrandsItem.objects.all()
@@ -284,13 +317,15 @@ def addToFavorites(request,pk):
     return redirect('')
 
 def removeFavorate(request,pk):
+
     try:
         house = House.objects.get(id=pk)
         _acount = Accounts.objects.get(name=request.user)
 
         favorite_list = FavoritedPosts.objects.get(account=_acount)
         favorite_list.homes.remove(house)
-        return redirect('propertiesDetails', pk)
+        return redirect('propertiesDetails',pk)
+
     except:
         print('error')
     return redirect('')

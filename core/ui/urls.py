@@ -19,6 +19,5 @@ urlpatterns =[
     path('features/',views.featuresHome,name="features"),
     path('404/',views.errors,name="errors"),
     path('add-to-favorites/<str:pk>/',views.addToFavorites,name="add-to-favorites"),
-
-
+    path('remove-favorites/<str:pk>/',views.removeFavorate,name="remove-favorites")
 ]
