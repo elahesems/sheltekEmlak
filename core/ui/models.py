@@ -185,3 +185,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.name
+
+class Accounts(models.Model):
+    """ Kullanıcı Hesapları, genişletilmiş Django AuthUser modeli. """
+    name = models.OneToOneField(User, related_name="Accounts", on_delete=models.CASCADE, verbose_name="Kullanıcı")
+    def __str__(self):
+        return self.name.username
