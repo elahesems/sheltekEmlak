@@ -191,3 +191,10 @@ class Accounts(models.Model):
     name = models.OneToOneField(User, related_name="Accounts", on_delete=models.CASCADE, verbose_name="Kullanıcı")
     def __str__(self):
         return self.name.username
+
+class FavoritedPosts(models.Model):
+    """Hangi ilanın hangi kullanıcı tarafından favori olarak kaydedildiğini belirtir."""
+
+    account = models.ForeignKey(Accounts, on_delete=models.CASCADE, verbose_name="Hesap",
+                                help_text="İlanın bağlanacağı hesap")
+    homes = models.ManyToManyField(House, related_name="favorited_posts", verbose_name="Favori İlanlar")

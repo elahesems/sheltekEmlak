@@ -262,4 +262,3 @@ def errors(request):
 #     return render(request, 'footer.html',context)
 
 
-
