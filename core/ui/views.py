@@ -262,3 +262,25 @@ def errors(request):
 #     return render(request, 'footer.html',context)
 
 
+def addToFavorites(request,pk):
+
+    try:
+        house = House.objects.get(id=pk)
+        _acount = Accounts.objects.get(name=request.user)
+        try:
+            favorite_list = FavoritedPosts.objects.get(account=_acount)
+            favorite_list.homes.add(house)
+        except:
+
+            favori = FavoritedPosts(account=_acount)
+            favori.save()
+            favori.homes.add(house)
+            favori.save()
+
+        return redirect('propertiesDetails',pk)
+
+    except:
+        print('error')
+    return redirect('')
+
+
