@@ -283,4 +283,14 @@ def addToFavorites(request,pk):
         print('error')
     return redirect('')
 
+def removeFavorate(request,pk):
+    try:
+        house = House.objects.get(id=pk)
+        _acount = Accounts.objects.get(name=request.user)
 
+        favorite_list = FavoritedPosts.objects.get(account=_acount)
+        favorite_list.homes.remove(house)
+        return redirect('propertiesDetails', pk)
+    except:
+        print('error')
+    return redirect('')
