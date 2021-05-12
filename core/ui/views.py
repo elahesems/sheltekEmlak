@@ -12,13 +12,13 @@ from django.contrib.auth.models import User
 from ui.models import *
 from django.contrib import messages
 from .widgets import navbarVariables
-#from num2words import num2words
+from num2words import num2words
 
 @unauthenticated_user
 def registerPage(request):
     indate = datetime.now()
     if request.user.is_authenticated:
-        print("11111")
+        print("dffffffffffff")
         return redirect('home')
     else:
         print('222222222222')
