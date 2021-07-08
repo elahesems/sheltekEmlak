@@ -389,8 +389,34 @@
                             </div>
                         </div>
                     </div>
+{#_______________________________N_E_W_S_______________________________________#}
+                    <div class="our-agents">
+                        <div class="row">
+                            <div class="agents-carousel">
+                                <!-- single-agent -->
+                                {% for item in all_news %}
+                                <div class="col-md-3">
+                                    <div class="single-agent">
+                                        <div class="agent-image">
+                                            <img src="{{ item.pic.url }}" alt="">
+                                        </div>
+                                        <div class="agent-info">
+                                            <div class="agent-name">
+                                                <h5><a href="{{ item.id }}">{{ item.author }}</a></h5>
+                                                <p>{{ item.title }}</p>
+                                            </div>
+                                        </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <!-- single-agent -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
             <!-- OUR AGENTS AREA END -->
 
             <!-- TESTIMONIAL AREA START -->

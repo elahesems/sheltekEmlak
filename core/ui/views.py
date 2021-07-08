@@ -1,5 +1,8 @@
+import requests
+import json
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 import random
 from datetime import datetime
@@ -61,6 +64,7 @@ def home(request):
     services = Service.objects.all()
     agents = Agent.objects.all()
     blogs = Blog.objects.all()
+    all_news = News.objects.all().order_by('id')[:20]
     agentsByDate = Agent.objects.all().order_by('-inDate')
     agentsByid = agentsByDate.order_by('-id')
     agentList = []
@@ -78,8 +82,8 @@ def home(request):
         if i == 9:
             break
     context = {'sliders':sliders,'abouts':abouts,'features':features,'agents':agents,
-               'agentList':agentList,'brands':brands,'services':services,
-                'houseList':houseList, 'houses':houses, 'blogs':blogs}
+               'agentList':agentList,'brands':brands,'services':services,'all_news':all_news,
+                'houseList':houseList, 'houses':houses, 'blogs':blogs,}
     navbarVariables(context=context)
     return render(request, 'index.html', context)
 @login_required(login_url='login')
@@ -329,3 +333,30 @@ def removeFavorate(request,pk):
     except:
         print('error')
     return redirect('')
+
+def get_news(request):
+
+    url="https://newsapi.org/v2/everything?q=tesla&from=2021-06-08&sortBy=publishedAt&apiKey=be90de5c697d4545ad786ea4932fe5b5"
+    r = requests.get(url)
+    payload = json.loads(r.text)
+    count = 1
+
+
+    for item in payload.get('articles'):
+        print(count)
+        publish = item.get('publishedAt')
+        publish_len = len(publish)
+        publish_date_string = publish[:publish_len-1]
+        publish_datetime = datetime.strptime(publish_date_string,"%Y-%m-%dT%H:%M:%S")
+
+        News.objects.create(
+            author = item['author'],
+            title = item.get('title'),
+            # description = item.get('description'),
+            url = item.get('url'),
+            pic = item.get('urlToImage'),
+            date_of_publish =publish_datetime
+        )
+        count += 1
+
+    return HttpResponse('<h2>-------------------OK----------------</h2>')

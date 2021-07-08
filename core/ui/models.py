@@ -198,3 +198,18 @@ class FavoritedPosts(models.Model):
     account = models.ForeignKey(Accounts, on_delete=models.CASCADE, verbose_name="Hesap",
                                 help_text="İlanın bağlanacağı hesap")
     homes = models.ManyToManyField(House, related_name="favorited_posts", verbose_name="Favori İlanlar")
+
+
+
+class News(models.Model):
+    author = models.CharField(max_length=300000009)
+    title = models.CharField(max_length=300000009)
+    description = models.CharField(max_length=900000009)
+    url = models.CharField(max_length=300000009)
+    pic = models.URLField(null=True,blank=True)
+    date_of_publish = models.DateTimeField(null=True,blank=True)
+    def __str__(self):
+        return self.author
+
+
+
