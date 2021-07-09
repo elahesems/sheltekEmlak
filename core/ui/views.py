@@ -64,7 +64,7 @@ def home(request):
     services = Service.objects.all()
     agents = Agent.objects.all()
     blogs = Blog.objects.all()
-    all_news = News.objects.all().order_by('id')[:20]
+    all_news = News.objects.all().order_by('id')[:4]
     agentsByDate = Agent.objects.all().order_by('-inDate')
     agentsByid = agentsByDate.order_by('-id')
     agentList = []
@@ -352,7 +352,7 @@ def get_news(request):
         News.objects.create(
             author = item['author'],
             title = item.get('title'),
-            # description = item.get('description'),
+            description = item.get('description'),
             url = item.get('url'),
             pic = item.get('urlToImage'),
             date_of_publish =publish_datetime
