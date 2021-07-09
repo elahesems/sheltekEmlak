@@ -64,7 +64,7 @@ def home(request):
     services = Service.objects.all()
     agents = Agent.objects.all()
     blogs = Blog.objects.all()
-    all_news = News.objects.all().order_by('id')[:4]
+    all_news = News.objects.all().order_by('id')[:3]
     agentsByDate = Agent.objects.all().order_by('-inDate')
     agentsByid = agentsByDate.order_by('-id')
     agentList = []

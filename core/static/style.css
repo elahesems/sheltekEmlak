@@ -445,6 +445,12 @@
 .agent-image > img {
     width: 100%;
 }
+.news-image {
+    border-bottom: 4px solid rgb(255, 89, 1);
+    position: relative;
+
+
+}
 .agent-info {
     padding-bottom: 10px;
     position: relative;
